@@ -1,8 +1,8 @@
 import React from 'react'
 
-function Button(props) {
+function Button({ name, onClick, clickParameter, className }) {
     return (
-    <button onClick={() => props.onClick(props.clickParameter)}>{props.name}</button>
+    <button onClick={() => onClick(clickParameter)} className={className}>{name}</button>
     )
 }
 

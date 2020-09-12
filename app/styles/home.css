@@ -1,0 +1,26 @@
+.home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem;
+}
+
+.home-container button {
+    width: 15rem;
+    margin: 1rem;
+}
+
+.first-row {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+   
+
+}
+
+.second-row {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+
+}

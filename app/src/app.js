@@ -11,13 +11,13 @@ function app() {
     setAppLocation(new_location)
   }
   
-    return (
-      <div>
-        <Header onClick={changeAppLocation} subtitle={app_location} />
-        <Body />
-        <Footer />
-      </div>
-    )
+  return (
+    <div className="main-container">
+      <Header onClick={changeAppLocation} subtitle={app_location} />
+      <Body />
+      <Footer />
+    </div>
+  )
 
 }
 

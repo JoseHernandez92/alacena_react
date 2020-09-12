@@ -1,9 +1,12 @@
 import React from 'react'
 
+import Home from '../views/Home.js'
+
 function Body() {
+
   return (
-    <div>
-      <footer>This is the footer</footer>
+    <div className="body-container">
+      <Home />
     </div>
   )
 }

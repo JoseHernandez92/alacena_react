@@ -1,3 +1,11 @@
 * {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+#root {
+    height: 100vh;
+}
+
+.main-container {
+    height: 100%;
+}

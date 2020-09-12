@@ -1,0 +1,9 @@
+.header-container h1 {
+    display: flex;
+    justify-content: center;
+}
+
+.header-container h4 {
+    display: flex;
+    justify-content: center;
+}

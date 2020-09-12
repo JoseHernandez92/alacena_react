@@ -1,18 +1,20 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import Button from '../components/Button'
+
 
 function Home() {
 
   return (
     <div className="home-container">
       <div className="first-row">
-      <Button name='Mis Listas' onClick={console.log("Hola")} clickParameter='listsView' className="btn btn-light btn-lg shadow-sm"/>
-      <Button name='Nueva Lista' onClick={console.log("Hola")} clickParameter='newListView' className="btn btn-light btn-lg shadow-sm"/>
+      <Link to="/Lists"><button className="btn btn-light btn-lg shadow-sm">Mis Listas</button></Link>
+      <Link to="/NewList" ><Button name='Nueva Lista' className="btn btn-light btn-lg shadow-sm"/></Link>
       </div>
       <div className="second-row">
-      <Button name='Productos' onClick={console.log("Hola")} clickParameter='productsView' className="btn btn-light btn-lg shadow-sm"/>
-      <Button name='Opciones' onClick={console.log("Hola")} clickParameter='optionsView' className="btn btn-light btn-lg shadow-sm"/>
+      <Link to="/Products" ><Button name='Productos' className="btn btn-light btn-lg shadow-sm"/></Link>
+      <Link to="/Options" ><Button name='Opciones' className="btn btn-light btn-lg shadow-sm"/></Link>
       </div>
     </div>
   )

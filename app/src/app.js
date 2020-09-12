@@ -14,7 +14,7 @@ function app() {
   return (
     <div className="main-container">
       <Header onClick={changeAppLocation} subtitle={app_location} />
-      <Body />
+      <Body changeAppLocation={changeAppLocation} appLocation={app_location}/>
       <Footer />
     </div>
   )

@@ -4,7 +4,7 @@ import Header from './components/Header'
 import Body from './components/Body'
 
 function app() {
-  const [app_location, setAppLocation] = useState("Home")
+  const [app_location, setAppLocation] = useState("Inicio")
 
   const changeAppLocation = (new_location) => {
     setAppLocation(new_location)
@@ -13,7 +13,7 @@ function app() {
   return (
     <div className="main-container">
       <Header onClick={changeAppLocation} subtitle={app_location} />
-      <Body changeAppLocation={changeAppLocation} appLocation={app_location}/>
+      <Body changeAppLocation={changeAppLocation}/>
     </div>
   )
 

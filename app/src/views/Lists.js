@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom'
 import Button from '../components/Button'
 
 
-function Lists() {
+function Lists({ onClick }) {
 
   return (
     <div >
         Listas
-        <Link to="/"><button className="btn btn-light btn-lg shadow-sm">Retroceder</button></Link>
+        <Link to="/"><Button name="Retroceder" onClick={onClick} clickParameter="Inicio" className="btn btn-light btn-lg shadow-sm"/></Link>
     </div>
   )
 }

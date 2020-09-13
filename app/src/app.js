@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 import Header from './components/Header'
-import Footer from './components/Footer'
 import Body from './components/Body'
 
 function app() {
@@ -15,7 +14,6 @@ function app() {
     <div className="main-container">
       <Header onClick={changeAppLocation} subtitle={app_location} />
       <Body changeAppLocation={changeAppLocation} appLocation={app_location}/>
-      <Footer />
     </div>
   )
 

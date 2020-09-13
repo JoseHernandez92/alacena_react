@@ -1,9 +1,10 @@
-.header-container h1 {
+header h1 {
     display: flex;
     justify-content: center;
 }
 
-.header-container h4 {
+header h4 {
     display: flex;
     justify-content: center;
 }
+

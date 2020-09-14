@@ -26,8 +26,8 @@ function Categories({ onClick, selectCategorie }) {
         {product_categorie.map((categorie, index) => {
           return (
             <div className="row" key={index}>
-               <Link to="/Products"><Button name={categorie[0]} onClick={selectCategorie} clickParameter={categorie[0]} key={index} className="btn btn-light btn-lg shadow-sm"/></Link>
-               <Link to="/Products"><Button name={categorie[1]} onClick={selectCategorie} clickParameter={categorie[1]} key={index + 1} className="btn btn-light btn-lg shadow-sm"/></Link>
+               <Link to="/Products"><Button name={categorie[0]} onClick={() => {onClick(categorie[0]), selectCategorie(categorie[0])}} key={index} className="btn btn-light btn-lg shadow-sm"/></Link>
+               <Link to="/Products"><Button name={categorie[1]} onClick={() => {onClick(categorie[1]), selectCategorie(categorie[1])}} key={index + 1} className="btn btn-light btn-lg shadow-sm"/></Link>
             </div>
           )
         })}

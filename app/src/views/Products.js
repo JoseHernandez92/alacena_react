@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom'
 import Button from '../components/Button'
 
 
-function Products({ onClick }) {
+function Products({ onClick, currentCategorie }) {
 
   return (
     <div >
-        Productos
+        {currentCategorie}
         <Link to="/Categories"><Button name="Retroceder" onClick={onClick} clickParameter="Productos" className="btn btn-secondary btn-lg shadow-sm"/></Link>
     </div>
   )

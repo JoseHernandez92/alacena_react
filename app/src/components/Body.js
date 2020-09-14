@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Route, Switch } from 'react-router-dom'
 
 import Home from '../views/Home.js'
@@ -9,9 +9,10 @@ import Products from '../views/Products.js'
 import Options from '../views/Options.js'
 
 function Body({changeAppLocation}) {
+  const [categorie, setCategorie] = useState("")
 
   const selectCategorie = (categorie) => {
-    console.log(categorie)
+    setCategorie(categorie)
   }
 
   return (
@@ -25,7 +26,7 @@ function Body({changeAppLocation}) {
           </Route>
           <Route path="/Categories" component={() => <Categories onClick={changeAppLocation} selectCategorie={selectCategorie}/>}>
           </Route>
-          <Route path="/Products" component={() => <Products onClick={changeAppLocation}/>}>
+          <Route path="/Products" component={() => <Products onClick={changeAppLocation} currentCategorie={categorie}/>}>
           </Route>
           <Route path="/Options" component={() => <Options onClick={changeAppLocation}/>}>
           </Route>

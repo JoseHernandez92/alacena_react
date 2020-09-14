@@ -7,5 +7,6 @@ import App from "./src/app";
 import "./styles/index.css"
 import "./styles/header.css"
 import "./styles/home.css"
+import "./styles/products.css"
 
 ReactDOM.render(<Router><App/></Router>, document.getElementById("root"));

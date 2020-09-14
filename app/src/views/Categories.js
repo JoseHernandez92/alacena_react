@@ -22,7 +22,7 @@ function Categories({ onClick, selectCategorie }) {
   }
 
   return (
-    <div className="products-container">
+    <div className="categories-container">
         {product_categorie.map((categorie, index) => {
           return (
             <div className="row" key={index}>

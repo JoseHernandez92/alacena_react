@@ -7,10 +7,10 @@ api.use(cors())
 let categories = [["Carne", "Verduras"], ["Fruta", "Bebidas"]]
 
 let products = {
-  Carne: ["Lomo", "Pechuga"], 
-  Verduras: ["Pimientos", "Acelgas"], 
-  Fruta: ["Plátanos", "Manzanas"],
-  Bebidas: ["Agua", "Cerveza"]
+  Carne: [["Lomo", "Pechuga"], ["Ternera"]], 
+  Verduras: [["Pimientos", "Acelgas"]], 
+  Fruta: [["Plátanos", "Manzanas"]],
+  Bebidas: [["Agua", "Cerveza"]]
 }
  
 api.get('/', function (req, res) {

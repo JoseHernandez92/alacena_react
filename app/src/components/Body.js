@@ -4,10 +4,15 @@ import { Route, Switch } from 'react-router-dom'
 import Home from '../views/Home.js'
 import Lists from '../views/Lists.js'
 import NewList from '../views/NewList.js'
+import Categories from '../views/Categories.js'
 import Products from '../views/Products.js'
 import Options from '../views/Options.js'
 
 function Body({changeAppLocation}) {
+
+  const selectCategorie = (categorie) => {
+    console.log(categorie)
+  }
 
   return (
     <div>
@@ -17,6 +22,8 @@ function Body({changeAppLocation}) {
           <Route path="/Lists" component={() => <Lists onClick={changeAppLocation}/>}>
           </Route>
           <Route path="/NewList" component={() => <NewList onClick={changeAppLocation}/>}>
+          </Route>
+          <Route path="/Categories" component={() => <Categories onClick={changeAppLocation} selectCategorie={selectCategorie}/>}>
           </Route>
           <Route path="/Products" component={() => <Products onClick={changeAppLocation}/>}>
           </Route>

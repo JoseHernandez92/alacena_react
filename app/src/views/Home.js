@@ -12,7 +12,7 @@ function Home({ onClick }) {
         <Link to="/NewList" ><Button name="Nueva Lista" onClick={onClick} clickParameter="Nueva Lista" className="btn btn-light btn-lg shadow-sm"/></Link>
       </div>
       <div className="row">
-        <Link to="/Products" ><Button name='Productos' onClick={onClick} clickParameter="Productos" className="btn btn-light btn-lg shadow-sm"/></Link>
+        <Link to="/Categories" ><Button name='Productos' onClick={onClick} clickParameter="Productos" className="btn btn-light btn-lg shadow-sm"/></Link>
         <Link to="/Options" ><Button name='Opciones' onClick={onClick} clickParameter="Opciones" className="btn btn-light btn-lg shadow-sm"/></Link>
       </div>
     </div>

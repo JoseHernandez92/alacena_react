@@ -9,5 +9,6 @@ import "./styles/header.css"
 import "./styles/home.css"
 import "./styles/products.css"
 import "./styles/categories.css"
+import "./styles/newList.css"
 
 ReactDOM.render(<Router><App/></Router>, document.getElementById("root"));

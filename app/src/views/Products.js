@@ -12,7 +12,7 @@ function Products({ onClick, currentCategory }) {
       }, [])
     
       const getProducts = () => {
-        fetch(`http://localhost:3000/retrieveProducts?categorie=${currentCategory}`)
+        fetch(`http://localhost:3000/retrieveProducts?category=${currentCategory}`)
         .then(response => {
           return response.json()
         })
@@ -27,14 +27,14 @@ function Products({ onClick, currentCategory }) {
           if(product.length == 1){
             return (
               <div className="row" key={index}>
-              <Link to="/Products"><Button name={product[0]} key={index} className="btn btn-light btn-lg shadow-sm"/></Link>
+              <Button name={product[0]} key={index} className="btn btn-light btn-lg shadow-sm"/>
             </div>
             )
           }
           return (
             <div className="row" key={index}>
-               <Link to="/Products"><Button name={product[0]} key={index} className="btn btn-light btn-lg shadow-sm"/></Link>
-               <Link to="/Products"><Button name={product[1]} key={index + 1} className="btn btn-light btn-lg shadow-sm"/></Link>
+               <Button name={product[0]} key={index} className="btn btn-light btn-lg shadow-sm"/>
+               <Button name={product[1]} key={index + 1} className="btn btn-light btn-lg shadow-sm"/>
             </div>
           )
         })}

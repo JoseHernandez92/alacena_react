@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 import Button from '../components/Button'
 
 function NewLists({ onClick }) {
   const [list_name, setListName] = useState("")
+  let history = useHistory()
   
   const handleInput = (event) => {
     setListName(event.target.value)
@@ -30,6 +31,7 @@ function NewLists({ onClick }) {
         return alert(response.errorMessage)
       }
       onClick(list_name)
+      history.push("/SelectCategory")
      
     }).catch(error=> alert("error"))
   }

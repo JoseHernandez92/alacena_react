@@ -32,9 +32,9 @@ function Body({changeAppLocation}) {
           </Route>
           <Route path="/Options" component={() => <Options onClick={changeAppLocation}/>}>
           </Route>
-          <Route path="/SelectCategory" component={() => <SelectCategory onClick={changeAppLocation}/>}>
+          <Route path="/SelectCategory" component={() => <SelectCategory onClick={changeAppLocation} selectCategory={selectCategory}/>}>
           </Route>
-          <Route path="/AddProduct" component={() => <AddProduct onClick={changeAppLocation}/>}>
+          <Route path="/AddProduct" component={() => <AddProduct onClick={changeAppLocation} currentCategory={category}/>}>
           </Route>
         </Switch>
     </div>

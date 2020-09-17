@@ -25,8 +25,8 @@ api.get('/retrieveCategories', (req, res) => {
 })
 
 api.get('/retrieveProducts',  (req, res) => {
-  const categorie = req.query.categorie
-  res.json(products[categorie])
+  const category = req.query.category
+  res.json(products[category])
 })
 
 api.post('/addNewList', (req, res) => {

@@ -7,12 +7,14 @@ import NewList from '../views/NewList.js'
 import Categories from '../views/Categories.js'
 import Products from '../views/Products.js'
 import Options from '../views/Options.js'
+import AddProduct from '../views/AddProduct.js'
+import SelectCategory from '../views/SelectCategory.js'
 
 function Body({changeAppLocation}) {
-  const [categorie, setCategorie] = useState("")
+  const [category, setCategory] = useState("")
 
-  const selectCategorie = (categorie) => {
-    setCategorie(categorie)
+  const selectCategory = (category) => {
+    setCategory(category)
   }
 
   return (
@@ -24,11 +26,15 @@ function Body({changeAppLocation}) {
           </Route>
           <Route path="/NewList" component={() => <NewList onClick={changeAppLocation}/>}>
           </Route>
-          <Route path="/Categories" component={() => <Categories onClick={changeAppLocation} selectCategorie={selectCategorie}/>}>
+          <Route path="/Categories" component={() => <Categories onClick={changeAppLocation} selectCategory={selectCategory}/>}>
           </Route>
-          <Route path="/Products" component={() => <Products onClick={changeAppLocation} currentCategorie={categorie}/>}>
+          <Route path="/Products" component={() => <Products onClick={changeAppLocation} currentCategory={category}/>}>
           </Route>
           <Route path="/Options" component={() => <Options onClick={changeAppLocation}/>}>
+          </Route>
+          <Route path="/SelectCategory" component={() => <SelectCategory onClick={changeAppLocation}/>}>
+          </Route>
+          <Route path="/AddProduct" component={() => <AddProduct onClick={changeAppLocation}/>}>
           </Route>
         </Switch>
     </div>

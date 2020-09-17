@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import Button from '../components/Button'
 
 
-function Products({ onClick, currentCategory }) {
+function AddProduct({ onClick, currentCategorie }) {
     const [products, setProducts] = useState([])
 
     useEffect(() => {
@@ -12,7 +12,7 @@ function Products({ onClick, currentCategory }) {
       }, [])
     
       const getProducts = () => {
-        fetch(`http://localhost:3000/retrieveProducts?categorie=${currentCategory}`)
+        fetch(`http://localhost:3000/retrieveProducts?categorie=${currentCategorie}`)
         .then(response => {
           return response.json()
         })
@@ -43,4 +43,4 @@ function Products({ onClick, currentCategory }) {
   )
 }
 
-export default Products
+export default AddProduct

@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom'
 
 import Button from '../components/Button'
 
-function Categories({ onClick, selectCategory }) {
+
+function SelectCategory({ onClick, selectCategory }) {
   const [product_category, setProductCategory] = useState([])
 
   useEffect(() => {
@@ -35,4 +36,4 @@ function Categories({ onClick, selectCategory }) {
   )
 }
 
-export default Categories
+export default SelectCategory

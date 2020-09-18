@@ -14,7 +14,7 @@ let products = {
   Bebidas: [["Agua", "Cerveza"]]
 }
 
-let lists = ["Compra Navidad"]
+let lists = {}
  
 api.get('/', (req, res) => {
   res.send('Hello World')
@@ -32,12 +32,19 @@ api.get('/retrieveProducts',  (req, res) => {
 api.post('/addNewList', (req, res) => {
   const new_list = req.body.listName
 
-  if (lists.includes(new_list)){
-    console.log("Ya está!")
+  if(new_list in lists){
     return res.json({errorMessage: "Ya tienes una lista con ese nombre"})
   }
-  
-  lists.push(new_list)
+  lists[new_list] = []
+ 
+  res.json([])
+})
+
+api.post('/addNewProduct', (req, res) => {
+  const list_name = req.body.list
+  const product = req.body.product
+
+  lists[list_name].push(product)
 
   res.json([])
 })

@@ -3,7 +3,7 @@ import { Link, useHistory } from 'react-router-dom'
 
 import Button from '../components/Button'
 
-function NewLists({ onClick }) {
+function NewLists({ onClick, setCurrentList }) {
   const [list_name, setListName] = useState("")
   let history = useHistory()
   
@@ -30,7 +30,8 @@ function NewLists({ onClick }) {
       if(response.errorMessage){
         return alert(response.errorMessage)
       }
-      onClick(list_name)
+      onClick("Productos")
+      setCurrentList(list_name)
       history.push("/SelectCategory")
      
     }).catch(error=> alert("error"))

@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom'
 
 import Button from '../components/Button'
 
-function AddProduct({ onClick, currentCategory }) {
+function AddProduct({ onClick, list_name, currentCategory }) {
   const [products, setProducts] = useState([])
-  const [last_product_added, setLastProductAdded] = useState("Añade algo")
+  const [last_product_added, setLastProductAdded] = useState("")
 
   useEffect(() => {
     getProducts()
@@ -22,12 +22,29 @@ function AddProduct({ onClick, currentCategory }) {
   }
 
   const addProduct = (product) => {
-    setLastProductAdded(`Has añadido: ${product}`)
+    setLastProductAdded(`: has añadido ${product}`)
+
+    const data = {list: list_name, product: product}
+    fetch(`http://localhost:3000/addNewProduct`, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Accept':'application/json',
+        'Content-Type': 'application/json'
+      }
+    }).then(response=> {
+      return response.json()
+    }).then(response =>{
+      if(response.errorMessage){
+        return alert(response.errorMessage)
+      }
+     
+    }).catch(error=> alert("error"))
   }
 
   return (
     <div className="products-container" >
-      <div class="p-3 mb-2 bg-info text-white rounded">{last_product_added}</div>
+      <div className="p-3 mb-2 bg-info text-white rounded">{list_name}{last_product_added}</div>
        
       {products.map((product, index) => {
         if (product.length == 1) {

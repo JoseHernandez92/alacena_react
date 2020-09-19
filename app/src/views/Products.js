@@ -2,24 +2,22 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import Button from '../components/Button'
+import Service from '../services/Service'
 
 
 function Products({ onClick, currentCategory }) {
-    const [products, setProducts] = useState([])
+  const [products, setProducts] = useState([])
+  const service = new Service()
 
-    useEffect(() => {
-        getProducts()
-      }, [])
-    
-      const getProducts = () => {
-        fetch(`http://localhost:3000/retrieveProducts?category=${currentCategory}`)
-        .then(response => {
-          return response.json()
-        })
-        .then(response => {
-          setProducts(response)
-        }).catch(error => alert("error"))
-      }
+  useEffect(() => {
+      getProducts()
+    }, [])
+  
+  const getProducts = async () => {
+    const retrieved_products = await service.retrieveProducts(currentCategory)
+    setProducts(retrieved_products)
+
+  }
 
   return (
     <div className="products-container" >

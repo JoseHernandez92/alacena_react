@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import Button from '../components/Button'
+import Service from '../services/Service'
 
 function AddProduct({ onClick, list_name, currentCategory }) {
+  const service = new Service()
   const [products, setProducts] = useState([])
   const [last_product_added, setLastProductAdded] = useState("")
 
@@ -11,42 +13,26 @@ function AddProduct({ onClick, list_name, currentCategory }) {
     getProducts()
   }, [])
 
-  const getProducts = () => {
-    fetch(`http://localhost:3000/retrieveProducts?category=${currentCategory}`)
-      .then(response => {
-        return response.json()
-      })
-      .then(response => {
-        setProducts(response)
-      }).catch(error => alert("error"))
+  const getProducts = async () => {
+    const retrieved_products = await service.retrieveProducts(currentCategory)
+    setProducts(retrieved_products)
   }
 
   const addProduct = (product) => {
     setLastProductAdded(`: has añadido ${product}`)
-
     const data = {list: list_name, product: product}
-    fetch(`http://localhost:3000/addNewProduct`, {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: {
-        'Accept':'application/json',
-        'Content-Type': 'application/json'
-      }
-    }).then(response=> {
-      return response.json()
-    }).then(response =>{
-      if(response.errorMessage){
-        return alert(response.errorMessage)
-      }
-     
-    }).catch(error=> alert("error"))
+    service.addNewProduct(data)
   }
 
   return (
     <div className="products-container" >
       <div className="p-3 mb-2 bg-info text-white rounded">{list_name}{last_product_added}</div>
-       
       {products.map((product, index) => {
+        if(products == []){
+          return (
+            <div>This category is empty</div>
+          )
+        }
         if (product.length == 1) {
           return (
             <div className="row" key={index}>

@@ -51,7 +51,6 @@ api.post('/addNewProduct', (req, res) => {
 
 api.get('/retrieveLists', (req, res) => {
   const allList = Object.keys(lists)
-  console.log(allList)
 
   res.json([allList])
 })

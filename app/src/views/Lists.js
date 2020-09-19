@@ -2,24 +2,20 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import Button from '../components/Button'
-
+import Service from '../services/Service'
 
 function Lists({ onClick }) {
+  const service = new Service()
   const [lists, setLists] = useState([])
 
   useEffect(() => {
-    getLists()
+    getLists() 
   }, [])
 
-  const getLists = () => {
-    fetch(`http://localhost:3000/retrieveLists`)
-    .then(response => {
-      return response.json()
-    })
-    .then(response => {
-      setLists(response)
-    }).catch(error => alert("error"))
-  }
+  const getLists = async () => {
+    const all_lists = await service.getLists()
+    setLists(all_lists)
+  } 
 
   return (
     <div >

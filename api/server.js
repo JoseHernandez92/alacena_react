@@ -49,4 +49,11 @@ api.post('/addNewProduct', (req, res) => {
   res.json([])
 })
 
+api.get('/retrieveLists', (req, res) => {
+  const allList = Object.keys(lists)
+  console.log(allList)
+
+  res.json([allList])
+})
+
 api.listen(3000)

@@ -13,8 +13,11 @@ function SelectCategory({ onClick, selectCategory, list_name }) {
   }, [])
 
   const getCategories = async () => {
-    const categories = await service.retrieveCategories()
-
+    const response = await service.retrieveCategories()
+    let categories = []
+    while (response.length > 0){
+      categories.push(response.splice(0, 2))
+    }
     setProductCategory(categories)
   }
 
@@ -23,6 +26,13 @@ function SelectCategory({ onClick, selectCategory, list_name }) {
       <div className="p-3 mb-2 bg-info text-white rounded">{list_name}</div>
 
       {product_category.map((category, index) => {
+        if(category.length == 1){
+          return (
+            <div className="row" key={index}>
+            <Link to="/Products"><Button name={category[0]} key={index} className="btn btn-light btn-lg shadow-sm"/></Link>
+          </div>
+          )
+        }
         return (
           <div className="row" key={index}>
               <Link to="/AddProduct"><Button name={category[0]} onClick={() => {onClick(category[0]), selectCategory(category[0])}} key={index} className="btn btn-light btn-lg shadow-sm"/></Link>

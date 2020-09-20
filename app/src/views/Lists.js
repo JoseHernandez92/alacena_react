@@ -13,13 +13,24 @@ function Lists({ onClick }) {
   }, [])
 
   const getLists = async () => {
-    const all_lists = await service.getLists()
+    const response = await service.getLists()
+    let all_lists = []
+    while (response.length > 0){
+      all_lists.push(response.splice(0, 2))
+    }
     setLists(all_lists)
   } 
 
   return (
     <div >
         {lists.map((list, index) => {
+          if(list.length == 1){
+            return (
+              <div className="row" key={index}>
+              <Button name={list[0]} key={index} className="btn btn-light btn-lg shadow-sm"/>
+            </div>
+            )
+          }
           return (
             <div className="row" key={index}>
                <Button name={list[0]} onClick={() => onClick(list[0])} key={index} className="btn btn-light btn-lg shadow-sm"/>

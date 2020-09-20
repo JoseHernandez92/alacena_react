@@ -14,9 +14,12 @@ function Products({ onClick, currentCategory }) {
     }, [])
   
   const getProducts = async () => {
-    const retrieved_products = await service.retrieveProducts(currentCategory)
+    const response = await service.retrieveProducts(currentCategory)
+    let retrieved_products = []
+    while (response.length > 0){
+      retrieved_products.push(response.splice(0, 2))
+    }
     setProducts(retrieved_products)
-
   }
 
   return (

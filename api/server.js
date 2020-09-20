@@ -5,13 +5,13 @@ var cors = require('cors')
 api.use(express.json({ limit: '50mb' }))
 api.use(cors())
 
-let categories = [["Carne", "Verduras"], ["Fruta", "Bebidas"]]
+let categories = ["Carne", "Verduras", "Fruta", "Bebidas"]
 
 let products = {
-  Carne: [["Lomo", "Pechuga"], ["Ternera"]], 
-  Verduras: [["Pimientos", "Acelgas"]], 
-  Fruta: [["Plátanos", "Manzanas"]],
-  Bebidas: [["Agua", "Cerveza"]]
+  Carne: ["Lomo", "Pechuga", "Ternera"], 
+  Verduras: ["Pimientos", "Acelgas"], 
+  Fruta: ["Plátanos", "Manzanas"],
+  Bebidas: ["Agua", "Cerveza"]
 }
 
 let lists = {}
@@ -36,7 +36,7 @@ api.post('/addNewList', (req, res) => {
     return res.json({errorMessage: "Ya tienes una lista con ese nombre"})
   }
   lists[new_list] = []
- 
+  
   res.json([])
 })
 
@@ -52,7 +52,7 @@ api.post('/addNewProduct', (req, res) => {
 api.get('/retrieveLists', (req, res) => {
   const allList = Object.keys(lists)
 
-  res.json([allList])
+  res.json(allList)
 })
 
 api.listen(3000)

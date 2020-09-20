@@ -4,7 +4,7 @@ class Service {
 
     async getLists(){
         const lists = await ApiClient.getJson('retrieveLists')
-
+        
         return lists
     }
     

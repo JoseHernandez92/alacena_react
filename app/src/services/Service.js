@@ -14,6 +14,12 @@ class Service {
         return products_retrieved
     }
 
+    async retrieveListProducts(list_name) {
+        const products_retrieved = await ApiClient.getJson(`retrieveListProducts?list=${list_name}`)
+
+        return products_retrieved
+    }
+
     async addNewProduct(listAndProduct) {
         await ApiClient.postJson('addNewProduct', listAndProduct)
     }

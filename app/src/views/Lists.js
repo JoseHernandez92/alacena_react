@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import Button from '../components/Button'
 import Service from '../services/Service'
 
-function Lists({ onClick }) {
+function Lists({ onClick, setCurrentList }) {
   const service = new Service()
   const [lists, setLists] = useState([])
 
@@ -27,14 +27,14 @@ function Lists({ onClick }) {
           if(list.length == 1){
             return (
               <div className="row" key={index}>
-              <Button name={list[0]} key={index} className="btn btn-light btn-lg shadow-sm"/>
+              <Link to="/ViewList"><Button name={list[0]} onClick={() => onClick(list[0]), setCurrentList(list[0])} key={index} className="btn btn-light btn-lg shadow-sm"/></Link>
             </div>
             )
           }
           return (
             <div className="row" key={index}>
-               <Button name={list[0]} onClick={() => onClick(list[0])} key={index} className="btn btn-light btn-lg shadow-sm"/>
-               <Button name={list[1]} onClick={() => onClick(list[1])} key={index + 1} className="btn btn-light btn-lg shadow-sm"/>
+               <Link to="/ViewList"><Button name={list[0]} onClick={() => onClick(list[0]), setCurrentList(list[0])} key={index} className="btn btn-light btn-lg shadow-sm"/></Link>
+               <Link to="/ViewList"><Button name={list[1]} onClick={() => onClick(list[1]), setCurrentList(list[1])} key={index + 1} className="btn btn-light btn-lg shadow-sm"/></Link>
             </div>
           )
         })}

@@ -9,6 +9,7 @@ import Products from '../views/Products.js'
 import Options from '../views/Options.js'
 import AddProduct from '../views/AddProduct.js'
 import SelectCategory from '../views/SelectCategory.js'
+import ViewList from '../views/ViewList.js'
 
 function Body({changeAppLocation}) {
   const [category, setCategory] = useState("")
@@ -27,7 +28,9 @@ function Body({changeAppLocation}) {
         <Switch>
           <Route exact path="/" component={() => <Home onClick={changeAppLocation}/>}>
           </Route>
-          <Route path="/Lists" component={() => <Lists onClick={changeAppLocation}/>}>
+          <Route path="/Lists" component={() => <Lists onClick={changeAppLocation} setCurrentList={setCurrentList}/>}>
+          </Route>
+          <Route path="/ViewList" component={() => <ViewList onClick={changeAppLocation} list_name={currentList}/>}>
           </Route>
           <Route path="/NewList" component={() => <NewList onClick={changeAppLocation} setCurrentList={setCurrentList}/>}>
           </Route>

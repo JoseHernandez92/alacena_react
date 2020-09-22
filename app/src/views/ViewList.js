@@ -15,32 +15,23 @@ function ViewList({ onClick, list_name }) {
 
   const getProducts = async () => {
       const response = await service.retrieveListProducts(list_name)
-      let retrieved_products = []
-      while (response.length > 0){
-      retrieved_products.push(response.splice(0, 2))
-      }
-      setProducts(retrieved_products)
+      
+      setProducts(response)
   }
 
   return (
-    <div >
+    <div className="menu-container" >
       {products.map((product, index) => {
         if(products == []){
           return (
             <div>This list is empty</div>
           )
         }
-        if (product.length == 1) {
-          return (
-            <div className="row" key={index}>
-              <Button name={product[0]} onClick={console.log("Hi") } key={index} className="btn btn-light btn-lg shadow-sm" />
-            </div>
-          )
-        }
         return (
-          <div className="row" key={index}>
-            <Button name={product[0]} onClick={ console.log("Hi")} key={index} className="btn btn-light btn-lg shadow-sm" />
-            <Button name={product[1]} onClick={console.log("Hi") } key={index + 1} className="btn btn-light btn-lg shadow-sm" />
+        <div key={index}>
+          {product}
+          <span className="badge badge-pill badge-primary">Primary</span>
+          <span className="badge badge-pill badge-dark">Dark</span>
           </div>
         )
       })}

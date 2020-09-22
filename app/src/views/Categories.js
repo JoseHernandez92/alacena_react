@@ -24,7 +24,7 @@ function Categories({ onClick, selectCategory }) {
 
 
   return (
-    <div className="categories-container">
+    <div className="menu-container">
         {product_category.map((category, index) => {
           if(category.length == 1){
             return (

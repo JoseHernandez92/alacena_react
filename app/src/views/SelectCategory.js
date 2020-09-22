@@ -22,7 +22,7 @@ function SelectCategory({ onClick, selectCategory, list_name }) {
   }
 
   return (
-    <div className="categories-container">
+    <div className="menu-container">
       <div className="p-3 mb-2 bg-info text-white rounded">{list_name}</div>
 
       {product_category.map((category, index) => {

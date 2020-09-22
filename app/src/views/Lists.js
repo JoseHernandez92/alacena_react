@@ -22,7 +22,7 @@ function Lists({ onClick, setCurrentList }) {
   } 
 
   return (
-    <div >
+    <div className="menu-container">
         {lists.map((list, index) => {
           if(list.length == 1){
             return (

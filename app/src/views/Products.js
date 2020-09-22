@@ -23,7 +23,7 @@ function Products({ onClick, currentCategory }) {
   }
 
   return (
-    <div className="products-container" >
+    <div className="menu-container">
         {products.map((product, index) => {
           if(product.length == 1){
             return (

@@ -29,7 +29,7 @@ function AddProduct({ onClick, list_name, currentCategory }) {
   }
 
   return (
-    <div className="products-container" >
+    <div className="menu-container" >
       <div className="p-3 mb-2 bg-info text-white rounded">{list_name}{last_product_added}</div>
       {products.map((product, index) => {
         if(products == []){

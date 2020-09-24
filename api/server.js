@@ -32,7 +32,7 @@ api.get('/retrieveProducts',  (req, res) => {
 
 api.get('/retrieveListProducts',  (req, res) => {
   const list = req.query.list
-
+  
   res.json(lists[list])
 })
 

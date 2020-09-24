@@ -22,16 +22,11 @@ function ViewList({ onClick, list_name }) {
   return (
     <div className="menu-container" >
       {products.map((product, index) => {
-        if(products == []){
-          return (
-            <div>This list is empty</div>
-          )
-        }
         return (
         <div key={index}>
           {product}
-          <span className="badge badge-pill badge-primary">Primary</span>
-          <span className="badge badge-pill badge-dark">Dark</span>
+          <span className="badge badge-pill badge-primary"><i className="fas fa-check"></i></span>
+          <span className="badge badge-pill badge-dark"><i className="fas fa-trash"></i></span>
           </div>
         )
       })}

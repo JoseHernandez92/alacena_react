@@ -41,7 +41,6 @@ function NewLists({ onClick, setCurrentList }) {
         <input type="text" onChange={handleInput} placeholder="¿Cómo se llama tu lista?" className="form-control"></input>
         <Button name="Crear nueva lista" onClick={handleClick} className="btn btn-light btn-lg shadow-sm"/>
         <Link to="/"><Button name="Retroceder" onClick={onClick} clickParameter="Inicio" className="btn btn-secondary btn-lg shadow-sm"/></Link>
-
     </div>
     </div>
   )

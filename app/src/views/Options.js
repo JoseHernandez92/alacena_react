@@ -1,15 +1,30 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import Button from '../components/Button'
 
-
 function Options({ onClick }) {
+  const [language, setLanguage] = useState("")
+
+  const select = (event) => {
+    const selected_language = event.target.value
+    setLanguage(selected_language)
+    if (selected_language == "English"){
+      global.i18n = localization.en
+    }
+    if (selected_language == "Spanish"){
+      global.i18n = localization.es
+    }
+  }
 
   return (
     <div className="menu-container">
-       Opciones
-       <Link to="/"><Button name="Retroceder" onClick={onClick} clickParameter="Inicio" className="btn btn-light btn-lg shadow-sm"/></Link>
+       <select onChange={select} defaultValue={"Elige idioma"} className="custom-select" id="inlineFormCustomSelect">
+        <option >{global.i18n.choose_language}</option>
+        <option value="English">English</option>
+        <option value="Spanish">Español</option>
+      </select>
+      <Link to="/"><Button name={global.i18n.back} onClick={onClick} clickParameter={global.i18n.home} className="btn btn-light btn-lg shadow-sm" /></Link>
     </div>
   )
 }

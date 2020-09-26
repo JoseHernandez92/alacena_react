@@ -38,7 +38,7 @@ function Lists({ onClick, setCurrentList }) {
             </div>
           )
         })}
-        <Link to="/"><Button name="Retroceder" onClick={onClick} clickParameter="Inicio" className="btn btn-secondary btn-lg shadow-sm"/></Link>
+        <Link to="/"><Button name={global.i18n.back} onClick={onClick} clickParameter={global.i18n.home} className="btn btn-secondary btn-lg shadow-sm"/></Link>
     </div>
   )
 }

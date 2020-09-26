@@ -29,7 +29,7 @@ function NewLists({ onClick, setCurrentList }) {
       setShowError(true)
       return
     }
-    onClick("Productos")
+    onClick(global.i18n.products)
     setCurrentList(list_name)
     history.push("/SelectCategory")
   }
@@ -38,9 +38,9 @@ function NewLists({ onClick, setCurrentList }) {
     <div>
         <ErrorModal show={show_error} message={message_error} closeError={() => setShowError(false)}/>
     <div className="newList-container">
-        <input type="text" onChange={handleInput} placeholder="¿Cómo se llama tu lista?" className="form-control"></input>
-        <Button name="Crear nueva lista" onClick={handleClick} className="btn btn-light btn-lg shadow-sm"/>
-        <Link to="/"><Button name="Retroceder" onClick={onClick} clickParameter="Inicio" className="btn btn-secondary btn-lg shadow-sm"/></Link>
+        <input type="text" onChange={handleInput} placeholder={global.i18n.add_new_list_placeholder} className="form-control"></input>
+        <Button name={global.i18n.add_new_list} onClick={handleClick} className="btn btn-light btn-lg shadow-sm"/>
+        <Link to="/"><Button name={global.i18n.back} onClick={onClick} clickParameter={global.i18n.home} className="btn btn-secondary btn-lg shadow-sm"/></Link>
     </div>
     </div>
   )

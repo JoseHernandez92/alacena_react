@@ -9,6 +9,9 @@ module.exports = localization = {
     add_new_list_placeholder: "What's the name of your list?",
     products: "Products",
     options: "Options",
+    yes: "Yes",
+    no: "No",
+    are_you_sure: "Are you sure?"
   },
   es: {
     home: "Inicio",
@@ -20,6 +23,11 @@ module.exports = localization = {
     add_new_list_placeholder: "¿Cómo se llama tu lista?",
     products: "Productos",
     options: "Opciones",
+    yes: "Sí",
+    no: "No",
+    are_you_sure: "¿Estás seguro/a?"
+
+    
 
   }
 }

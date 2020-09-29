@@ -35,6 +35,12 @@ class Service {
 
        return response
     }
+
+    async deleteProductFromList(productAndList){
+        const response = await ApiClient.postJson('deleteProductFromList', productAndList)
+
+        return response
+    }
 }
 
 export default Service

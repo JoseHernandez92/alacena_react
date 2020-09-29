@@ -62,4 +62,14 @@ api.get('/retrieveLists', (req, res) => {
   res.json(allList)
 })
 
+api.post('/deleteProductFromList', (req, res) => {
+  const list_name = req.body.list_name
+  const product = req.body.product
+  const product_index = lists[list_name].indexOf(product)
+
+  lists[list_name].splice(product_index, 1)
+
+  res.json(lists[list_name])
+})
+
 api.listen(3000)

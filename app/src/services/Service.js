@@ -41,6 +41,12 @@ class Service {
 
         return response
     }
+
+    async deleteList(list){
+        const response = await ApiClient.postJson('deleteList', list)
+
+        return response
+    }
 }
 
 export default Service

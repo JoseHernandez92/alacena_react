@@ -5,7 +5,7 @@ import Button from '../components/Button'
 import Service from '../services/Service'
 import OptionModal from '../components/OptionModal'
 
-function ViewList({ onClick, list_name }) {
+function ViewList({ changeAppLocation, list_name }) {
   const service = new Service()
   const [products, setProducts] = useState([])
   const [show_modal, setShowModal] = useState(false)
@@ -66,7 +66,7 @@ function ViewList({ onClick, list_name }) {
         </div>)
       })}
 
-      <Link to="/Lists"><Button name={global.i18n.back} onClick={onClick} clickParameter={global.i18n.my_lists} className="btn btn-secondary btn-lg shadow-sm" /></Link>
+      <Link to="/Lists"><Button name={global.i18n.back} onClick={() => changeAppLocation(global.i18n.my_lists)} className="btn btn-secondary btn-lg shadow-sm" /></Link>
     </div>
   )
 }

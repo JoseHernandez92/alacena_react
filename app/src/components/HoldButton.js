@@ -1,6 +1,6 @@
 import React from 'react'
 
-function HoldButton({ name, onClick, clickParameter, onHold, className }) {
+function HoldButton({ name, onClick, onHold, className }) {
 
     let clickHoldTimer = null
     let isHold = false
@@ -25,7 +25,7 @@ function HoldButton({ name, onClick, clickParameter, onHold, className }) {
         if(isHold){
             return console.log
         }
-        onClick(clickParameter)
+        onClick()
     }
 
 

@@ -26,11 +26,11 @@ function Body({changeAppLocation}) {
   return (
     <div>
         <Switch>
-          <Route exact path="/" component={() => <Home onClick={changeAppLocation}/>}>
+          <Route exact path="/" component={() => <Home changeAppLocation={changeAppLocation}/>}>
           </Route>
-          <Route path="/Lists" component={() => <Lists onClick={changeAppLocation} setCurrentList={setCurrentList}/>}>
+          <Route path="/Lists" component={() => <Lists changeAppLocation={changeAppLocation} setCurrentList={setCurrentList}/>}>
           </Route>
-          <Route path="/ViewList" component={() => <ViewList onClick={changeAppLocation} list_name={currentList}/>}>
+          <Route path="/ViewList" component={() => <ViewList changeAppLocation={changeAppLocation} list_name={currentList}/>}>
           </Route>
           <Route path="/NewList" component={() => <NewList onClick={changeAppLocation} setCurrentList={setCurrentList}/>}>
           </Route>

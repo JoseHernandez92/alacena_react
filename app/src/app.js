@@ -12,7 +12,7 @@ function app() {
   
   return (
     <div className="main-container">
-      <Header onClick={changeAppLocation} subtitle={app_location} />
+      <Header changeAppLocation={changeAppLocation} subtitle={app_location} />
       <Body changeAppLocation={changeAppLocation}/>
     </div>
   )

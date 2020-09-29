@@ -11,7 +11,8 @@ module.exports = localization = {
     options: "Options",
     yes: "Yes",
     no: "No",
-    are_you_sure: "Are you sure?"
+    are_you_sure: "Are you sure?",
+    delete_list: "Do you want to delete this list?"
   },
   es: {
     home: "Inicio",
@@ -25,7 +26,9 @@ module.exports = localization = {
     options: "Opciones",
     yes: "Sí",
     no: "No",
-    are_you_sure: "¿Estás seguro/a?"
+    are_you_sure: "¿Estás seguro/a?",
+    delete_list: "¿Quieres borrar esta lista?"
+
 
     
 

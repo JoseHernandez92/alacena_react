@@ -72,4 +72,13 @@ api.post('/deleteProductFromList', (req, res) => {
   res.json(lists[list_name])
 })
 
+api.post('/deleteList', (req, res) => {
+  const list_name = req.body.list_name
+
+  delete lists[list_name]
+  const allList = Object.keys(lists)
+
+  res.json(allList)
+})
+
 api.listen(3000)

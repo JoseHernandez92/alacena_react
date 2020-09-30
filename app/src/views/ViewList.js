@@ -5,7 +5,7 @@ import Button from '../components/Button'
 import Service from '../services/Service'
 import OptionModal from '../components/OptionModal'
 
-function ViewList({ changeAppLocation, list_name }) {
+function ViewList({ changeAppLocation, list_name, activateShoppingMode }) {
   const service = new Service()
   const [products, setProducts] = useState([])
   const [show_modal, setShowModal] = useState(false)
@@ -65,7 +65,7 @@ function ViewList({ changeAppLocation, list_name }) {
           <button type="button" onClick={() => selectProductToDelete(product)} value={product} className="btn btn btn-outline-primary w-25 m-0 p-0"><i className="fas fa-trash"></i></button>
         </div>)
       })}
-
+      <Link to="/SelectCategory"><Button name={global.i18n.add_more} onClick={() => {activateShoppingMode(true), changeAppLocation(global.i18n.products)}}className="btn btn-primary"/></Link>
       <Link to="/Lists"><Button name={global.i18n.back} onClick={() => changeAppLocation(global.i18n.my_lists)} className="btn btn-secondary btn-lg shadow-sm" /></Link>
     </div>
   )

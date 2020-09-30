@@ -14,6 +14,7 @@ import ViewList from '../views/ViewList.js'
 function Body({changeAppLocation}) {
   const [category, setCategory] = useState("")
   const [currentList, setList] = useState("")
+  const [shoppingMode, setShoppingMode] = useState(false)
 
   const selectCategory = (category) => {
     setCategory(category)
@@ -23,6 +24,11 @@ function Body({changeAppLocation}) {
     setList(list_name)
   }
 
+  const activateShoppingMode = (state) => {
+    console.log("State of Shopping Mode:", state)
+    setShoppingMode(state)
+  }
+
   return (
     <div>
         <Switch>
@@ -30,19 +36,19 @@ function Body({changeAppLocation}) {
           </Route>
           <Route path="/Lists" component={() => <Lists changeAppLocation={changeAppLocation} setCurrentList={setCurrentList}/>}>
           </Route>
-          <Route path="/ViewList" component={() => <ViewList changeAppLocation={changeAppLocation} list_name={currentList}/>}>
+          <Route path="/ViewList" component={() => <ViewList changeAppLocation={changeAppLocation} list_name={currentList} activateShoppingMode={activateShoppingMode}/>}>
           </Route>
-          <Route path="/NewList" component={() => <NewList onClick={changeAppLocation} setCurrentList={setCurrentList}/>}>
+          <Route path="/NewList" component={() => <NewList changeAppLocation={changeAppLocation} setCurrentList={setCurrentList}/>}>
           </Route>
-          <Route path="/Categories" component={() => <Categories onClick={changeAppLocation} selectCategory={selectCategory}/>}>
+          <Route path="/Categories" component={() => <Categories changeAppLocation={changeAppLocation} selectCategory={selectCategory}/>}>
           </Route>
-          <Route path="/Products" component={() => <Products onClick={changeAppLocation} currentCategory={category}/>}>
+          <Route path="/Products" component={() => <Products changeAppLocation={changeAppLocation} currentCategory={category}/>}>
           </Route>
-          <Route path="/Options" component={() => <Options onClick={changeAppLocation}/>}>
+          <Route path="/Options" component={() => <Options changeAppLocation={changeAppLocation}/>}>
           </Route>
-          <Route path="/SelectCategory" component={() => <SelectCategory onClick={changeAppLocation} list_name={currentList} selectCategory={selectCategory}/>}>
+          <Route path="/SelectCategory" component={() => <SelectCategory changeAppLocation={changeAppLocation} list_name={currentList} selectCategory={selectCategory} shoppingMode={shoppingMode}/>}>
           </Route>
-          <Route path="/AddProduct" component={() => <AddProduct onClick={changeAppLocation} list_name={currentList} currentCategory={category}/>}>
+          <Route path="/AddProduct" component={() => <AddProduct changeAppLocation={changeAppLocation} list_name={currentList} currentCategory={category} />}>
           </Route>
         </Switch>
     </div>

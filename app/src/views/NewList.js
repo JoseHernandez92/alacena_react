@@ -5,7 +5,7 @@ import Button from '../components/Button'
 import ErrorModal from '../components/ErrorModal'
 import Service from '../services/Service'
 
-function NewLists({ onClick, setCurrentList }) {
+function NewLists({ changeAppLocation, setCurrentList }) {
   const service = new Service()
   let history = useHistory()
   const [list_name, setListName] = useState("")
@@ -29,7 +29,7 @@ function NewLists({ onClick, setCurrentList }) {
       setShowError(true)
       return
     }
-    onClick(global.i18n.products)
+    changeAppLocation(global.i18n.products)
     setCurrentList(list_name)
     history.push("/SelectCategory")
   }
@@ -40,7 +40,7 @@ function NewLists({ onClick, setCurrentList }) {
     <div className="newList-container">
         <input type="text" onChange={handleInput} placeholder={global.i18n.add_new_list_placeholder} className="form-control"></input>
         <Button name={global.i18n.add_new_list} onClick={handleClick} className="btn btn-light btn-lg shadow-sm"/>
-        <Link to="/"><Button name={global.i18n.back} onClick={onClick} clickParameter={global.i18n.home} className="btn btn-secondary btn-lg shadow-sm"/></Link>
+        <Link to="/"><Button name={global.i18n.back} onClick={() => changeAppLocation(global.i18n.home)} className="btn btn-secondary btn-lg shadow-sm"/></Link>
     </div>
     </div>
   )

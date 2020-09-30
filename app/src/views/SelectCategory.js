@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 import Button from '../components/Button'
 import Service from '../services/Service'
 
-function SelectCategory({ onClick, selectCategory, list_name }) {
+function SelectCategory({ changeAppLocation, selectCategory, list_name, shoppingMode}) {
   const [product_category, setProductCategory] = useState([])
+  let history = useHistory()
   const service = new Service()
 
   useEffect(() => {
@@ -21,6 +22,21 @@ function SelectCategory({ onClick, selectCategory, list_name }) {
     setProductCategory(categories)
   }
 
+  const goBack = () => {
+    console.log("Go back!")
+    if(shoppingMode){
+      console.log("Back to lists!")
+      history.push("/ViewList")
+      changeAppLocation(list_name)
+      return
+    }
+    console.log("Back to Home!")
+
+    history.push("/")
+    changeAppLocation(global.i18n.home)
+
+  }
+
   return (
     <div className="menu-container">
       <div className="p-3 mb-2 bg-info text-white rounded">{list_name}</div>
@@ -29,18 +45,18 @@ function SelectCategory({ onClick, selectCategory, list_name }) {
         if(category.length == 1){
           return (
             <div className="row" key={index}>
-            <Link to="/Products"><Button name={category[0]} key={index} className="btn btn-light btn-lg shadow-sm"/></Link>
+            <Link to="/AddProduct"><Button name={category[0]} onClick={() => {changeAppLocation(category[0]), selectCategory(category[0])}} className="btn btn-light btn-lg shadow-sm"/></Link>
           </div>
           )
         }
         return (
           <div className="row" key={index}>
-              <Link to="/AddProduct"><Button name={category[0]} onClick={() => {onClick(category[0]), selectCategory(category[0])}} key={index} className="btn btn-light btn-lg shadow-sm"/></Link>
-              <Link to="/AddProduct"><Button name={category[1]} onClick={() => {onClick(category[1]), selectCategory(category[1])}} key={index + 1} className="btn btn-light btn-lg shadow-sm"/></Link>
+              <Link to="/AddProduct"><Button name={category[0]} onClick={() => {changeAppLocation(category[0]), selectCategory(category[0])}} className="btn btn-light btn-lg shadow-sm"/></Link>
+              <Link to="/AddProduct"><Button name={category[1]} onClick={() => {changeAppLocation(category[1]), selectCategory(category[1])}} className="btn btn-light btn-lg shadow-sm"/></Link>
           </div>
         )
       })}
-      <Link to="/"><Button name={global.i18n.back} onClick={onClick} clickParameter={global.i18n.home} className="btn btn-secondary btn-lg shadow-sm"/></Link>
+      <Button name={global.i18n.back} onClick={goBack} className="btn btn-secondary btn-lg shadow-sm"/>
     </div>
   )
 }

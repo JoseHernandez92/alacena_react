@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import Button from '../components/Button'
 import Service from '../services/Service'
 
-function AddProduct({ onClick, list_name, currentCategory }) {
+function AddProduct({ changeAppLocation, list_name, currentCategory }) {
   const service = new Service()
   const [products, setProducts] = useState([])
   const [last_product_added, setLastProductAdded] = useState("")
@@ -40,18 +40,18 @@ function AddProduct({ onClick, list_name, currentCategory }) {
         if (product.length == 1) {
           return (
             <div className="row" key={index}>
-              <Button name={product[0]} onClick={() => addProduct(product[0])} key={index} className="btn btn-light btn-lg shadow-sm" />
+              <Button name={product[0]} onClick={() => addProduct(product[0])} className="btn btn-light btn-lg shadow-sm" />
             </div>
           )
         }
         return (
           <div className="row" key={index}>
-            <Button name={product[0]} onClick={() => addProduct(product[0])} key={index} className="btn btn-light btn-lg shadow-sm" />
-            <Button name={product[1]} onClick={() => addProduct(product[1])} key={index + 1} className="btn btn-light btn-lg shadow-sm" />
+            <Button name={product[0]} onClick={() => addProduct(product[0])} className="btn btn-light btn-lg shadow-sm" />
+            <Button name={product[1]} onClick={() => addProduct(product[1])} className="btn btn-light btn-lg shadow-sm" />
           </div>
         )
       })}
-      <Link to="/SelectCategory"><Button name="Retroceder" onClick={onClick} clickParameter="Productos" className="btn btn-secondary btn-lg shadow-sm" /></Link>
+      <Link to="/SelectCategory"><Button name="Retroceder" onClick={() => changeAppLocation(global.i18n.products)} className="btn btn-secondary btn-lg shadow-sm" /></Link>
     </div>
   )
 }

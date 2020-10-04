@@ -8,7 +8,7 @@ import OptionModal from '../components/OptionModal'
 
 function Lists({ changeAppLocation, setCurrentList }) {
   const service = new Service()
-  let history = useHistory()
+  const history = useHistory()
   const [lists, setLists] = useState([])
   const [selected_list, setSelectedList] = useState('')
   const [show_modal, setShowModal] = useState(false)

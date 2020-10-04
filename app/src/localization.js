@@ -19,7 +19,9 @@ module.exports = localization = {
     cancel: "Cancel",
     modal_input: "Write here...",
     choose_name_input: "Choose a name",
-    add_product: "Add a product"
+    add_product: "Add a product",
+    delete_category: "Do you want to delete this category?",
+
   },
   es: {
     home: "Inicio",
@@ -41,7 +43,9 @@ module.exports = localization = {
     cancel: "Cancelar",
     modal_input: "Escribe aquí...",
     choose_name_input: "Elige un nombre",
-    add_product: "Añade un producto"
+    add_product: "Añade un producto",
+    delete_category: "¿Quieres borrar esta categoría?",
+
     
   }
 }

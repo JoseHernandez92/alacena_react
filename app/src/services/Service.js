@@ -59,6 +59,13 @@ class Service {
 
         return response
     }
+
+    async deleteCategory(category){
+        const response = await ApiClient.postJson('deleteCategory', category)
+
+        return response
+    }
+
 }
 
 export default Service

@@ -53,6 +53,12 @@ class Service {
 
         return response
     }
+
+    async addProduct(categoryAndProduct){
+        const response = await ApiClient.postJson('addProduct', categoryAndProduct)
+
+        return response
+    }
 }
 
 export default Service

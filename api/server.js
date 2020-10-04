@@ -108,4 +108,13 @@ api.post('/addProduct', (req, res) => {
   res.json([])
 })
 
+api.post('/deleteCategory', (req, res) => {
+  const category = req.body.category_name
+  
+  delete products[category]
+  const all_categories = Object.keys(products)
+
+  res.json(all_categories)
+})
+
 api.listen(3000)

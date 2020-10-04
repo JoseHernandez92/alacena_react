@@ -5,8 +5,6 @@ var cors = require('cors')
 api.use(express.json({ limit: '50mb' }))
 api.use(cors())
 
-let categories = ["Carne", "Verduras", "Fruta", "Bebidas"]
-
 let products = {
   Carne: ["Lomo", "Pechuga", "Ternera"], 
   Verduras: ["Pimientos", "Acelgas"], 
@@ -21,6 +19,8 @@ api.get('/', (req, res) => {
 })
 
 api.get('/retrieveCategories', (req, res) => {
+  const categories = Object.keys(products)
+
   res.json(categories)
 })
 
@@ -89,6 +89,14 @@ api.post('/deleteList', (req, res) => {
   const allList = Object.keys(lists)
 
   res.json(allList)
+})
+
+api.post('/addCategory', (req, res) => {
+  const category = req.body.new_category
+
+  products[category] = []
+
+  res.json([])
 })
 
 api.listen(3000)

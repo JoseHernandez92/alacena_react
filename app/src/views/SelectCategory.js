@@ -6,7 +6,7 @@ import Service from '../services/Service'
 
 function SelectCategory({ changeAppLocation, selectCategory, list_name, shoppingMode}) {
   const [product_category, setProductCategory] = useState([])
-  let history = useHistory()
+  const history = useHistory()
   const service = new Service()
 
   useEffect(() => {
@@ -23,14 +23,11 @@ function SelectCategory({ changeAppLocation, selectCategory, list_name, shopping
   }
 
   const goBack = () => {
-    console.log("Go back!")
     if(shoppingMode){
-      console.log("Back to lists!")
       history.push("/ViewList")
       changeAppLocation(list_name)
       return
     }
-    console.log("Back to Home!")
 
     history.push("/")
     changeAppLocation(global.i18n.home)

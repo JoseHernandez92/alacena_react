@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 import Button from '../components/Button'
 import Service from '../services/Service'
@@ -7,6 +7,7 @@ import OptionModal from '../components/OptionModal'
 
 function ViewList({ changeAppLocation, list_name, activateShoppingMode }) {
   const service = new Service()
+  const history = useHistory()
   const [products, setProducts] = useState([])
   const [show_modal, setShowModal] = useState(false)
   const [shopping_cart, setShoppingCart] = useState([])
@@ -54,6 +55,14 @@ function ViewList({ changeAppLocation, list_name, activateShoppingMode }) {
     setProducts(response)
   }
 
+  const finishShopping = () => {
+    const data = {list_name: list_name, product: shopping_cart}
+    service.deleteProductFromList(data)
+
+    changeAppLocation(global.i18n.home)
+    history.push("/")
+  }
+
   return (
     <div className="menu-container" >
       <OptionModal show={show_modal} message={global.i18n.are_you_sure} acceptOption={() => {deleteProduct(), setShowModal(false)}} denyOption={() => setShowModal(false)}/>
@@ -66,6 +75,7 @@ function ViewList({ changeAppLocation, list_name, activateShoppingMode }) {
         </div>)
       })}
       <Link to="/SelectCategory"><Button name={global.i18n.add_more} onClick={() => {activateShoppingMode(true), changeAppLocation(global.i18n.products)}}className="btn btn-primary"/></Link>
+      <Button name={global.i18n.done} onClick={finishShopping} className="btn btn-secondary btn-lg shadow-sm" />
       <Link to="/Lists"><Button name={global.i18n.back} onClick={() => changeAppLocation(global.i18n.my_lists)} className="btn btn-secondary btn-lg shadow-sm" /></Link>
     </div>
   )

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 import Button from '../components/Button'
 
-function Options({ onClick }) {
+function Options({ changeAppLocation }) {
   const [language, setLanguage] = useState("")
 
   const select = (event) => {
@@ -24,7 +24,7 @@ function Options({ onClick }) {
         <option value="English">English</option>
         <option value="Spanish">Español</option>
       </select>
-      <Link to="/"><Button name={global.i18n.back} onClick={onClick} clickParameter={global.i18n.home} className="btn btn-light btn-lg shadow-sm" /></Link>
+      <Link to="/"><Button name={global.i18n.back} onClick={() => changeAppLocation(global.i18n.home)} className="btn btn-light btn-lg shadow-sm" /></Link>
     </div>
   )
 }

@@ -64,8 +64,18 @@ api.get('/retrieveLists', (req, res) => {
 
 api.post('/deleteProductFromList', (req, res) => {
   const list_name = req.body.list_name
-  const product = req.body.product
-  const product_index = lists[list_name].indexOf(product)
+  const products = req.body.product
+
+  if (Array.isArray(products)){
+    console.log("Muchos")
+    for (item of products){
+      const item_index = lists[list_name].indexOf(item)
+      lists[list_name].splice(item_index, 1) 
+    }
+    return res.json(lists[list_name])
+  }
+
+  const product_index = lists[list_name].indexOf(products)
 
   lists[list_name].splice(product_index, 1)
 
@@ -74,7 +84,7 @@ api.post('/deleteProductFromList', (req, res) => {
 
 api.post('/deleteList', (req, res) => {
   const list_name = req.body.list_name
-
+  
   delete lists[list_name]
   const allList = Object.keys(lists)
 

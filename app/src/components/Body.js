@@ -25,7 +25,6 @@ function Body({changeAppLocation}) {
   }
 
   const activateShoppingMode = (state) => {
-    console.log("State of Shopping Mode:", state)
     setShoppingMode(state)
   }
 

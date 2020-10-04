@@ -47,6 +47,12 @@ class Service {
 
         return response
     }
+
+    async addCategory(category){
+        const response = await ApiClient.postJson('addCategory', category)
+
+        return response
+    }
 }
 
 export default Service

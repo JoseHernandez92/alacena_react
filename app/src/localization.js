@@ -13,7 +13,12 @@ module.exports = localization = {
     no: "No",
     are_you_sure: "Are you sure?",
     delete_list: "Do you want to delete this list?",
-    add_more: "Add more"
+    add_more: "Add more",
+    done: "Done",
+    add_category: "Add a category",
+    cancel: "Cancel",
+    category_input: "Your category name...",
+    choose_category_name: "Name your new category"
   },
   es: {
     home: "Inicio",
@@ -29,10 +34,14 @@ module.exports = localization = {
     no: "No",
     are_you_sure: "¿Estás seguro/a?",
     delete_list: "¿Quieres borrar esta lista?",
-    add_more: "Añadir más"
+    add_more: "Añadir más",
+    done: "Hecho",
+    add_category: "Añade otra categoría",
+    cancel: "Cancelar",
+    category_input: "El nombre de tu categoría...",
+    choose_category_name: "Nombra tu nueva categoría"
 
 
     
-
   }
 }

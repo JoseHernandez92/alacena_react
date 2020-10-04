@@ -99,4 +99,13 @@ api.post('/addCategory', (req, res) => {
   res.json([])
 })
 
+api.post('/addProduct', (req, res) => {
+  const product = req.body.new_product
+  const category = req.body.category
+
+  products[category].push(product)
+
+  res.json([])
+})
+
 api.listen(3000)

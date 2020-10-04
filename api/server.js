@@ -117,4 +117,14 @@ api.post('/deleteCategory', (req, res) => {
   res.json(all_categories)
 })
 
+api.post('/deleteProduct', (req, res) => {
+  const category = req.body.category
+  const product = req.body.product
+  const product_index = products[category].indexOf(product)
+
+  products[category].splice(product_index, 1)
+
+  res.json(products[category])
+})
+
 api.listen(3000)

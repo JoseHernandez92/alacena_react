@@ -1,36 +1,36 @@
 import React from 'react'
 
-function HoldButton({ name, onClick, onHold, className }) {
+function HoldButton({ name, onClick = () => {}, onHold, className }) {
 
     let clickHoldTimer = null
-    let isHold = false
+    let isOnHold = false
 
     const handleMouseDown = () => {
         clickHoldTimer = setTimeout(() => {
-            isHold = true
+            isOnHold = true
             onHold()
         }, 800)
     }
 
     const handleMouseUp = () => {
-        if(isHold){
+        if (isOnHold) {
             setTimeout(() => {
-                isHold = false
+                isOnHold = false
               }, 200);
         }
         clearTimeout(clickHoldTimer)
     }
 
     const handleOnClick = () => {
-        if(isHold){
-            return console.log
+        if (isOnHold) {
+            return
         }
         onClick()
     }
 
 
     return (
-    <button onClick={handleOnClick} onMouseDown={handleMouseDown} onMouseUp={handleMouseUp} className={className}>{name}</button>
+        <button onClick={handleOnClick} onMouseDown={handleMouseDown} onMouseUp={handleMouseUp} className={className}>{name}</button>
     )
 }
 

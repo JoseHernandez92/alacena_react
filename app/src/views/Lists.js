@@ -19,11 +19,8 @@ function Lists({ changeAppLocation, setCurrentList }) {
 
   const getLists = async () => {
     const response = await service.getLists()
-    let all_lists = []
-    while (response.length > 0) {
-      all_lists.push(response.splice(0, 2))
-    }
-    setLists(all_lists)
+
+    setLists(response)
   }
 
   const handleClick = (list) => {
@@ -38,34 +35,49 @@ function Lists({ changeAppLocation, setCurrentList }) {
   }
 
   const deleteList = async () => {
-    const data = {list_name: selected_list}
+    const data = { list_name: selected_list }
     const response = await service.deleteList(data)
-    let all_lists = []
-    while (response.length > 0) {
-      all_lists.push(response.splice(0, 2))
-    }
-    setLists(all_lists)
+
+    setLists(response)
+  }
+
+  if (lists.length == 0) {
+    return (
+      <div className="d-flex justify-content-center m-3">
+        <div className="text-center bg-info text-white rounded w-50 p-3 m-2">
+        {global.i18n.no_list}
+        </div>
+      </div>
+    )
   }
 
   return (
-    <div className="menu-container">
-      <OptionModal show={show_modal}  message={global.i18n.delete_list} acceptOption={() => {deleteList(), setShowModal(false)}} denyOption={() => setShowModal(false)}/>
-      {lists.map((list, index) => {
-        if (list.length == 1) {
+    <div className="d-flex flex-wrap justify-content-center m-3">
+      <div className="d-flex flex-wrap justify-content-center w-75">
+        <OptionModal 
+          show={show_modal} 
+          message={global.i18n.delete_list} 
+          acceptOption={() => { deleteList(), setShowModal(false) }} 
+          denyOption={() => setShowModal(false)} 
+        />
+        {lists.map((list, index) => {
           return (
-            <div className="row" key={index}>
-              <HoldButton name={list[0]} onClick={() => handleClick(list[0])} onHold={() => selectList(list[0])} className="btn btn-light btn-lg shadow-sm" />
+            <div className="d-flex justify-content-center w-50" key={index}>
+              <HoldButton 
+                name={list} 
+                onClick={() => handleClick(list)} 
+                onHold={() => selectList(list)} 
+                className="btn btn-light btn-lg shadow w-75 m-3" />
             </div>
           )
-        }
-        return (
-          <div className="row" key={index}>
-            <HoldButton name={list[0]} onClick={() => handleClick(list[0])} onHold={() => selectList(list[0])}className="btn btn-light btn-lg shadow-sm" />
-            <HoldButton name={list[1]} onClick={() => handleClick(list[1])} onHold={() => selectList(list[1])}className="btn btn-light btn-lg shadow-sm" />
-          </div>
-        )
-      })}
-      <Link to="/"><Button name={global.i18n.back} onClick={() => changeAppLocation(global.i18n.home)} className="btn btn-secondary btn-lg shadow-sm" /></Link>
+        })}
+      </div>
+        <Link to="/" className="d-flex justify-content-center text-decoration-none w-75 m-3">
+          <Button 
+            name={global.i18n.back} 
+            onClick={() => changeAppLocation(global.i18n.home)} 
+            className="btn btn-secondary btn-lg shadow-sm w-50" />
+        </Link>
     </div>
   )
 }

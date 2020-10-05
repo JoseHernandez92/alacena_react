@@ -2,8 +2,8 @@ const express = require('express')
 const api = express()
 var cors = require('cors')
 
-api.use(express.json({ limit: '50mb' }))
 api.use(cors())
+api.use(express.json())
 
 let products = {
   Carne: ["Lomo", "Pechuga", "Ternera"], 
@@ -67,7 +67,6 @@ api.post('/deleteProductFromList', (req, res) => {
   const products = req.body.product
 
   if (Array.isArray(products)){
-    console.log("Muchos")
     for (item of products){
       const item_index = lists[list_name].indexOf(item)
       lists[list_name].splice(item_index, 1) 
@@ -92,6 +91,7 @@ api.post('/deleteList', (req, res) => {
 })
 
 api.post('/addCategory', (req, res) => {
+  console.log(req)
   const category = req.body.new_category
 
   products[category] = []
@@ -102,6 +102,10 @@ api.post('/addCategory', (req, res) => {
 api.post('/addProduct', (req, res) => {
   const product = req.body.new_product
   const category = req.body.category
+
+  if (category == null) {
+    res.error(400).send('Missing category')
+  }
 
   products[category].push(product)
 

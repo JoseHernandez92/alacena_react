@@ -8,7 +8,5 @@ import './src/localization'
 global.i18n = localization.es
 
 import "./styles/index.css"
-import "./styles/header.css"
-import "./styles/newList.css"
 
 ReactDOM.render(<Router><App/></Router>, document.getElementById("root"));

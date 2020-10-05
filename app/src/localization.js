@@ -21,9 +21,10 @@ module.exports = localization = {
     choose_name_input: "Choose a name",
     add_product: "Add a product",
     delete_category: "Do you want to delete this category?",
-    delete_product: "Do you want to delete this product?"
-
+    delete_product: "Do you want to delete this product?",
+    no_list: "There are no lists"
   },
+  
   es: {
     home: "Inicio",
     back: "Retroceder",
@@ -46,8 +47,7 @@ module.exports = localization = {
     choose_name_input: "Elige un nombre",
     add_product: "Añade un producto",
     delete_category: "¿Quieres borrar esta categoría?",
-    delete_product: "¿Quieres borrar este producto?"
-
-    
+    delete_product: "¿Quieres borrar este producto?",
+    no_list: "No hay ninguna lista"
   }
 }

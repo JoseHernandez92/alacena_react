@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom'
 function Header({ subtitle, changeAppLocation }) {
 
   return (
-    <Link to="/">
-      <header onClick={() => changeAppLocation(global.i18n.home)} className="bg-light shadow-sm">
-        <h1 className="text-dark">Alacena</h1>
-        <h4 className="text-secondary">{subtitle}</h4>
+    <Link to="/" className="text-decoration-none">
+      <header onClick={() => changeAppLocation(global.i18n.home)} className="bg-light shadow">
+        <h1 className="d-flex justify-content-center text-dark font-weight-bold">Alacena</h1>
+        <h4 className="d-flex justify-content-center text-secondary text-monospace ">{subtitle}</h4>
       </header>
     </Link>
   )

@@ -25,27 +25,23 @@ function ViewList({ changeAppLocation, list_name, activateShoppingMode }) {
 
   const checkProduct = (selected_product, index) => {
     const product_button = document.getElementById(`button${index}`)
-    let selected_products = shopping_cart
+    const selected_products = shopping_cart
     if (selected_products.includes(selected_product)) {
       selected_products.splice((selected_products.indexOf(selected_product)), 1)
-      setShoppingCart(selected_products)
       product_button.className = 'btn btn-primary m-0'
       product_button.innerHTML = selected_product
-
-
     } else {
       selected_products.push(selected_product)
-      setShoppingCart(selected_products)
       product_button.className = 'btn btn-outline-primary m-0'
       product_button.innerHTML = `<del>${selected_product}</del>`
     }
 
+    setShoppingCart(selected_products)
   }
 
   const selectProductToDelete = (selected_product) => {
     setShowModal(true)
     setProductToDelete(selected_product)
-    
   }
 
   const deleteProduct = async () => {
@@ -67,12 +63,13 @@ function ViewList({ changeAppLocation, list_name, activateShoppingMode }) {
     <div className="menu-container" >
       <OptionModal show={show_modal} message={global.i18n.are_you_sure} acceptOption={() => {deleteProduct(), setShowModal(false)}} denyOption={() => setShowModal(false)}/>
       {products.map((product, index) => {
-        return(
-        <div className="btn-group m-1" role="group" key={index}>
-          <button type="button" className="btn btn-primary m-0" id={`button${index}`}>{product}</button>
-          <button type="button" onClick={() => checkProduct(product, index)} value={product} className="btn btn btn-outline-primary w-25 m-0 p-0"><i className="fas fa-check"></i></button>
-          <button type="button" onClick={() => selectProductToDelete(product)} value={product} className="btn btn btn-outline-primary w-25 m-0 p-0"><i className="fas fa-trash"></i></button>
-        </div>)
+        return (
+          <div className="btn-group m-1" role="group" key={index}>
+            <button type="button" className="btn btn-primary m-0" id={`button${index}`}>{product}</button>
+            <button type="button" onClick={() => checkProduct(product, index)} value={product} className="btn btn btn-outline-primary w-25 m-0 p-0"><i className="fas fa-check"></i></button>
+            <button type="button" onClick={() => selectProductToDelete(product)} value={product} className="btn btn btn-outline-primary w-25 m-0 p-0"><i className="fas fa-trash"></i></button>
+          </div>
+        )
       })}
       <Link to="/SelectCategory"><Button name={global.i18n.add_more} onClick={() => {activateShoppingMode(true), changeAppLocation(global.i18n.products)}}className="btn btn-primary"/></Link>
       <Button name={global.i18n.done} onClick={finishShopping} className="btn btn-secondary btn-lg shadow-sm" />

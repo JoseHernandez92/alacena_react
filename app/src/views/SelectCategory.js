@@ -4,7 +4,7 @@ import { Link, useHistory } from 'react-router-dom'
 import Button from '../components/Button'
 import Service from '../services/Service'
 
-function SelectCategory({ changeAppLocation, selectCategory, list_name, shoppingMode}) {
+function SelectCategory({ changeAppLocation, selectCategory, list_name, shoppingMode }) {
   const [product_category, setProductCategory] = useState([])
   const history = useHistory()
   const service = new Service()
@@ -15,15 +15,12 @@ function SelectCategory({ changeAppLocation, selectCategory, list_name, shopping
 
   const getCategories = async () => {
     const response = await service.retrieveCategories()
-    let categories = []
-    while (response.length > 0){
-      categories.push(response.splice(0, 2))
-    }
-    setProductCategory(categories)
+    
+    setProductCategory(response)
   }
 
   const goBack = () => {
-    if(shoppingMode){
+    if (shoppingMode) {
       history.push("/ViewList")
       changeAppLocation(list_name)
       return
@@ -31,29 +28,27 @@ function SelectCategory({ changeAppLocation, selectCategory, list_name, shopping
 
     history.push("/")
     changeAppLocation(global.i18n.home)
-
   }
 
   return (
-    <div className="menu-container">
-      <div className="p-3 mb-2 bg-info text-white rounded">{list_name}</div>
-
-      {product_category.map((category, index) => {
-        if(category.length == 1){
+    <div className="d-flex flex-wrap justify-content-center m-3">
+      <div className="d-flex flex-wrap justify-content-center w-75">
+        <div className="p-3 mb-2 bg-info text-center text-white rounded w-75">{list_name}</div>
+        {product_category.map((category, index) => {
           return (
-            <div className="row" key={index}>
-            <Link to="/AddProduct"><Button name={category[0]} onClick={() => {changeAppLocation(category[0]), selectCategory(category[0])}} className="btn btn-light btn-lg shadow-sm"/></Link>
-          </div>
+            <div className="d-flex justify-content-center w-50" key={index}>
+              <Link to="/AddProduct" className="d-flex justify-content-center text-decoration-none w-75 m-3">
+                <Button 
+                  name={category} 
+                  onClick={() => { changeAppLocation(category), selectCategory(category) }} 
+                  className="btn btn-light btn-lg shadow w-100 " 
+                />
+              </Link>
+            </div>
           )
-        }
-        return (
-          <div className="row" key={index}>
-              <Link to="/AddProduct"><Button name={category[0]} onClick={() => {changeAppLocation(category[0]), selectCategory(category[0])}} className="btn btn-light btn-lg shadow-sm"/></Link>
-              <Link to="/AddProduct"><Button name={category[1]} onClick={() => {changeAppLocation(category[1]), selectCategory(category[1])}} className="btn btn-light btn-lg shadow-sm"/></Link>
-          </div>
-        )
-      })}
-      <Button name={global.i18n.back} onClick={goBack} className="btn btn-secondary btn-lg shadow-sm"/>
+        })}
+        <Button name={global.i18n.back} onClick={goBack} className="btn btn-secondary btn-lg shadow-sm" />
+      </div>
     </div>
   )
 }

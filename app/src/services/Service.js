@@ -2,7 +2,7 @@ import ApiClient from './ApiClient'
 
 class Service {
 
-    async getLists(){
+    async getLists() {
         const lists = await ApiClient.getJson('retrieveLists')
         
         return lists

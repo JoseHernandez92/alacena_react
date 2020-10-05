@@ -11,9 +11,9 @@ function app() {
   }
   
   return (
-    <div className="main-container">
+    <div className="d-flex flex-column m-1">
       <Header changeAppLocation={changeAppLocation} subtitle={app_location} />
-      <Body changeAppLocation={changeAppLocation}/>
+      <Body changeAppLocation={changeAppLocation} />
     </div>
   )
 

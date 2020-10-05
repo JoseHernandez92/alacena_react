@@ -35,13 +35,31 @@ function NewLists({ changeAppLocation, setCurrentList }) {
   }
 
   return (
-    <div>
-        <ErrorModal show={show_error} message={message_error} closeError={() => setShowError(false)}/>
-    <div className="newList-container">
-        <input type="text" onChange={handleInput} placeholder={global.i18n.add_new_list_placeholder} className="form-control"></input>
-        <Button name={global.i18n.add_new_list} onClick={handleClick} className="btn btn-light btn-lg shadow-sm"/>
-        <Link to="/"><Button name={global.i18n.back} onClick={() => changeAppLocation(global.i18n.home)} className="btn btn-secondary btn-lg shadow-sm"/></Link>
-    </div>
+    <div className="d-flex flex-column align-items-center m-2">
+      <ErrorModal 
+        show={show_error} 
+        message={message_error} 
+        closeError={() => setShowError(false)}
+      />
+      <div className="d-flex justify-content-center flex-wrap w-75 m-2">
+        <input 
+          onChange={handleInput} 
+          placeholder={global.i18n.add_new_list_placeholder} 
+          className="form-control w-75 m-2">
+        </input>
+        <Button 
+          name={global.i18n.add_new_list} 
+          onClick={handleClick} 
+          className="btn btn-light btn-lg shadow-sm w-50 m-2"
+        />
+      </div>
+      <Link to="/">
+        <Button 
+          name={global.i18n.back} 
+          onClick={() => changeAppLocation(global.i18n.home)} 
+          className="btn btn-secondary btn-lg shadow-sm m-2"
+        />
+      </Link>
     </div>
   )
 }

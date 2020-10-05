@@ -1,4 +1,4 @@
-class ApiClient {
+class HttpRequester {
 
     static async getJson(route) {
       const url = `${process.env.API_URL}/${route}`
@@ -22,5 +22,5 @@ class ApiClient {
     }
   }
   
-  export default ApiClient
+  export default HttpRequester
   

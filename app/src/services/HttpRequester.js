@@ -1,13 +1,13 @@
 class HttpRequester {
 
-    static async getJson(route) {
+    static async get(route) {
       const url = `${process.env.API_URL}/${route}`
       const response = await fetch(url)
       const data = await response.json()
       return data
     }
   
-    static async postJson(route, payload) {
+    static async post(route, payload) {
       let postObject = {
         method: 'POST',
         headers: {

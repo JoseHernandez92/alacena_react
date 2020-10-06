@@ -3,30 +3,29 @@ import React, { useEffect, useState } from 'react'
 import Button from '../components/Button'
 import HoldButton from '../components/HoldButton'
 import BackButton from '../components/BackButton'
-import Service from '../services/Service'
 import InputModal from '../components/InputModal'
 import OptionModal from '../components/OptionModal'
+import { retrieveCategoryProducts, addProductToCategory, deleteProductFromCategory} from '../services/productsRequester'
 
 function Products({ changeAppLocation, currentCategory }) {
   const [products, setProducts] = useState([])
   const [show_input_modal, setShowInputModal] = useState(false)
   const [show_option_modal, setShowOptionModal] = useState(false)
   const [selected_product, setSelectedProduct] = useState('')
-  const service = new Service()
 
   useEffect(() => {
     getProducts()
   }, [])
 
   const getProducts = async () => {
-    const response = await service.retrieveProducts(currentCategory)
+    const response = await retrieveCategoryProducts(currentCategory)
 
     setProducts(response)
   }
 
   const addProduct = async (input_content) => {
     const data = { category: currentCategory, new_product: input_content }
-    await service.addProduct(data)
+    await addProductToCategory(data)
     getProducts()
   }
 
@@ -37,7 +36,7 @@ function Products({ changeAppLocation, currentCategory }) {
 
   const deleteProduct = async () => {
     const data = { category: currentCategory, product: selected_product }
-    const response = await service.deleteProduct(data)
+    const response = await deleteProductFromCategory(data)
 
     setProducts(response)
   }

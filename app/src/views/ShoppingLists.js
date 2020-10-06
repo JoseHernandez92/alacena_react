@@ -3,11 +3,10 @@ import { Link, useHistory } from 'react-router-dom'
 
 import Button from '../components/Button'
 import HoldButton from '../components/HoldButton'
-import Service from '../services/Service'
+import { retrieveShoppingLists, deleteShoppingList } from '../services/shoppingListRequester'
 import OptionModal from '../components/OptionModal'
 
 function ShoppingLists({ changeAppLocation, setCurrentList }) {
-  const service = new Service()
   const history = useHistory()
   const [shoppingLists, setShoppingLists] = useState([])
   const [selectedShoppingList, setSelectedShoppingList] = useState('')
@@ -18,7 +17,7 @@ function ShoppingLists({ changeAppLocation, setCurrentList }) {
   }, [])
 
   const getShoppingLists = async () => {
-    const response = await service.getLists()
+    const response = await retrieveShoppingLists()
 
     setShoppingLists(response)
   }
@@ -36,7 +35,7 @@ function ShoppingLists({ changeAppLocation, setCurrentList }) {
 
   const deleteList = async () => {
     const data = { list_name: selectedShoppingList }
-    const response = await service.deleteList(data)
+    const response = await deleteShoppingList(data)
 
     setShoppingLists(response)
   }

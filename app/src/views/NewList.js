@@ -4,10 +4,9 @@ import { useHistory } from 'react-router-dom'
 import Button from '../components/Button'
 import BackButton from '../components/BackButton'
 import ErrorModal from '../components/ErrorModal'
-import Service from '../services/Service'
+import { saveShoppingList } from '../services/shoppingListRequester'
 
 function NewLists({ changeAppLocation, setCurrentList }) {
-  const service = new Service()
   let history = useHistory()
   const [list_name, setListName] = useState("")
   const [show_error, setShowError] = useState(false)
@@ -23,7 +22,7 @@ function NewLists({ changeAppLocation, setCurrentList }) {
 
   const sendList = async () => {
     let list = {listName: list_name}
-    const response = await service.saveList(list)
+    const response = await saveShoppingList(list)
     
     if(response.errorMessage){
       setMessageError(response.errorMessage)

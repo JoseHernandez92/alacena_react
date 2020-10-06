@@ -2,19 +2,19 @@ import React, { useEffect, useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 
 import Button from '../components/Button'
-import Service from '../services/Service'
+import { retrieveCategories  } from '../services/categoriesRequester'
+
 
 function SelectCategory({ changeAppLocation, selectCategory, list_name, shoppingMode }) {
   const [product_category, setProductCategory] = useState([])
   const history = useHistory()
-  const service = new Service()
 
   useEffect(() => {
     getCategories()
   }, [])
 
   const getCategories = async () => {
-    const response = await service.retrieveCategories()
+    const response = await retrieveCategories()
     
     setProductCategory(response)
   }

@@ -2,10 +2,9 @@ import React, { useEffect, useState } from 'react'
 
 import Button from '../components/Button'
 import BackButton from '../components/BackButton'
-import Service from '../services/Service'
+import { retrieveCategoryProducts, addProductToShoppingList } from '../services/productsRequester'
 
 function AddProduct({ changeAppLocation, list_name, currentCategory }) {
-  const service = new Service()
   const [products, setProducts] = useState([])
   const [last_product_added, setLastProductAdded] = useState("")
 
@@ -14,7 +13,7 @@ function AddProduct({ changeAppLocation, list_name, currentCategory }) {
   }, [])
 
   const getProducts = async () => {
-    const response = await service.retrieveProducts(currentCategory)
+    const response = await retrieveCategoryProducts(currentCategory)
 
     setProducts(response)
   }
@@ -22,7 +21,7 @@ function AddProduct({ changeAppLocation, list_name, currentCategory }) {
   const addProduct = (product) => {
     setLastProductAdded(`: has añadido ${product}`)
     const data = { list: list_name, product: product }
-    service.addNewProduct(data)
+    addProductToShoppingList(data)
   }
 
   return (

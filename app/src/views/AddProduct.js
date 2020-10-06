@@ -18,7 +18,8 @@ function AddProduct({ changeAppLocation, list_name, currentCategory }) {
     setProducts(response)
   }
 
-  const addProduct = (product) => {
+  const addProduct = (event) => {
+    const product = event.target.innerHTML
     setLastProductAdded(`: has añadido ${product}`)
     const data = { list: list_name, product: product }
     addProductToShoppingList(data)
@@ -31,7 +32,7 @@ function AddProduct({ changeAppLocation, list_name, currentCategory }) {
         {products.map((product, index) => {
           return (
             <div className="d-flex justify-content-center w-50" key={index}>
-              <Button name={product} onClick={() => addProduct(product)} className="btn btn-light btn-lg shadow w-75 m-3" />
+              <Button name={product} onClick={addProduct} className="btn btn-light btn-lg shadow w-75 m-3" />
             </div>
           )
         })}

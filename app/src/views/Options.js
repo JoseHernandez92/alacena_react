@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
 
-import Button from '../components/Button'
+import BackButton from '../components/BackButton'
 
 function Options({ changeAppLocation }) {
   const [language, setLanguage] = useState("")
@@ -21,13 +20,7 @@ function Options({ changeAppLocation }) {
           <option value="en">English</option>
           <option value="es">Español</option>
         </select>
-        <Link to="/">
-          <Button 
-            name={global.i18n.back} 
-            onClick={() => changeAppLocation(global.i18n.home)} 
-            className="btn btn-light btn-lg shadow" 
-          />
-        </Link>
+        <BackButton onClick={() => changeAppLocation(global.i18n.home)}/>
       </div>
     </div>
 

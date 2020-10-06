@@ -2,25 +2,25 @@ import React, { useEffect, useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 
 import Button from '../components/Button'
-import Service from '../services/Service'
 import HoldButton from '../components/HoldButton'
+import Service from '../services/Service'
 import OptionModal from '../components/OptionModal'
 
-function Lists({ changeAppLocation, setCurrentList }) {
+function ShoppingLists({ changeAppLocation, setCurrentList }) {
   const service = new Service()
   const history = useHistory()
-  const [lists, setLists] = useState([])
-  const [selected_list, setSelectedList] = useState('')
-  const [show_modal, setShowModal] = useState(false)
+  const [shoppingLists, setShoppingLists] = useState([])
+  const [selectedShoppingList, setSelectedShoppingList] = useState('')
+  const [showModal, setShowModal] = useState(false)
 
   useEffect(() => {
-    getLists()
+    getShoppingLists()
   }, [])
 
-  const getLists = async () => {
+  const getShoppingLists = async () => {
     const response = await service.getLists()
 
-    setLists(response)
+    setShoppingLists(response)
   }
 
   const handleClick = (list) => {
@@ -29,19 +29,19 @@ function Lists({ changeAppLocation, setCurrentList }) {
     history.push("/ViewList")
   }
 
-  const selectList = (list) => {
+  const selectShoppingList = (list) => {
     setShowModal(true)
-    setSelectedList(list)
+    setSelectedShoppingList(list)
   }
 
   const deleteList = async () => {
-    const data = { list_name: selected_list }
+    const data = { list_name: selectedShoppingList }
     const response = await service.deleteList(data)
 
-    setLists(response)
+    setShoppingLists(response)
   }
-
-  if (lists.length == 0) {
+  
+  if (shoppingLists.length == 0) {
     return (
       <div className="d-flex justify-content-center m-3">
         <div className="text-center bg-info text-white rounded w-50 p-3 m-2">
@@ -55,18 +55,18 @@ function Lists({ changeAppLocation, setCurrentList }) {
     <div className="d-flex flex-wrap justify-content-center m-3">
       <div className="d-flex flex-wrap justify-content-center w-75">
         <OptionModal 
-          show={show_modal} 
+          show={showModal} 
           message={global.i18n.delete_list} 
           acceptOption={() => { deleteList(), setShowModal(false) }} 
           denyOption={() => setShowModal(false)} 
         />
-        {lists.map((list, index) => {
+        {shoppingLists.map((list, index) => {
           return (
             <div className="d-flex justify-content-center w-50" key={index}>
               <HoldButton 
                 name={list} 
                 onClick={() => handleClick(list)} 
-                onHold={() => selectList(list)} 
+                onHold={() => selectShoppingList(list)} 
                 className="btn btn-light btn-lg shadow w-75 m-3" />
             </div>
           )
@@ -82,4 +82,4 @@ function Lists({ changeAppLocation, setCurrentList }) {
   )
 }
 
-export default Lists
+export default ShoppingLists

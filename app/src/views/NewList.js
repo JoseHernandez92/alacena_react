@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 import Button from '../components/Button'
+import BackButton from '../components/BackButton'
 import ErrorModal from '../components/ErrorModal'
 import Service from '../services/Service'
 
@@ -53,13 +54,7 @@ function NewLists({ changeAppLocation, setCurrentList }) {
           className="btn btn-light btn-lg shadow-sm w-50 m-2"
         />
       </div>
-      <Link to="/">
-        <Button 
-          name={global.i18n.back} 
-          onClick={() => changeAppLocation(global.i18n.home)} 
-          className="btn btn-secondary btn-lg shadow-sm m-2"
-        />
-      </Link>
+      <BackButton onClick={() => changeAppLocation(global.i18n.home)}/>
     </div>
   )
 }

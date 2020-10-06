@@ -69,7 +69,7 @@ function Categories({ changeAppLocation, selectCategory }) {
         <Button name={global.i18n.add_category} onClick={() => setShowInputModal(true)} className="btn btn-primary btn-lg shadow w-75 m-3" />
         <Link to="/" className="d-flex justify-content-center text-decoration-none w-50 m-3">
           <Button
-            name="Retroceder"
+            name={global.i18n.back}
             onClick={() => changeAppLocation(global.i18n.home)}
             className="btn btn-secondary btn-lg shadow"
           />

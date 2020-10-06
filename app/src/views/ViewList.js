@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 
 import Button from '../components/Button'
+import BackButton from '../components/BackButton'
 import Service from '../services/Service'
 import OptionModal from '../components/OptionModal'
 
@@ -60,20 +61,26 @@ function ViewList({ changeAppLocation, list_name, activateShoppingMode }) {
   }
 
   return (
-    <div className="menu-container" >
+    <div className="d-flex flex-column justify-content-center align-items-center m-1" >
       <OptionModal show={show_modal} message={global.i18n.are_you_sure} acceptOption={() => {deleteProduct(), setShowModal(false)}} denyOption={() => setShowModal(false)}/>
       {products.map((product, index) => {
         return (
-          <div className="btn-group m-1" role="group" key={index}>
-            <button type="button" className="btn btn-primary m-0" id={`button${index}`}>{product}</button>
+          <div className="d-flex justify-content-center btn-group w-75 m-1" role="group" key={index}>
+            <button type="button" className="btn btn-primary w-50 m-0" id={`button${index}`}>{product}</button>
             <button type="button" onClick={() => checkProduct(product, index)} value={product} className="btn btn btn-outline-primary w-25 m-0 p-0"><i className="fas fa-check"></i></button>
             <button type="button" onClick={() => selectProductToDelete(product)} value={product} className="btn btn btn-outline-primary w-25 m-0 p-0"><i className="fas fa-trash"></i></button>
           </div>
         )
       })}
-      <Link to="/SelectCategory"><Button name={global.i18n.add_more} onClick={() => {activateShoppingMode(true), changeAppLocation(global.i18n.products)}}className="btn btn-primary"/></Link>
-      <Button name={global.i18n.done} onClick={finishShopping} className="btn btn-secondary btn-lg shadow-sm" />
-      <Link to="/Lists"><Button name={global.i18n.back} onClick={() => changeAppLocation(global.i18n.my_lists)} className="btn btn-secondary btn-lg shadow-sm" /></Link>
+      <Link to="/SelectCategory" className="w-50">
+        <Button 
+          name={global.i18n.add_more} 
+          onClick={() => {activateShoppingMode(true), changeAppLocation(global.i18n.products)}}
+          className="btn btn-primary m-2"
+        />
+      </Link>
+      <Button name={global.i18n.done} onClick={finishShopping} className="btn btn-secondary btn-lg shadow w-50 m-2" />
+      <BackButton onClick={() => changeAppLocation(global.i18n.my_lists)}/>
     </div>
   )
 }

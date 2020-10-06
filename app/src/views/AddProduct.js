@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
 
 import Button from '../components/Button'
+import BackButton from '../components/BackButton'
 import Service from '../services/Service'
 
 function AddProduct({ changeAppLocation, list_name, currentCategory }) {
@@ -36,13 +36,7 @@ function AddProduct({ changeAppLocation, list_name, currentCategory }) {
             </div>
           )
         })}
-        <Link to="/SelectCategory" className="d-flex justify-content-center w-50 m-3">
-          <Button 
-            name="Retroceder" 
-            onClick={() => changeAppLocation(global.i18n.products)} 
-            className="btn btn-secondary btn-lg shadow" 
-          />
-        </Link>
+        <BackButton onClick={() => changeAppLocation(global.i18n.products)}/>
       </div>
     </div>
 

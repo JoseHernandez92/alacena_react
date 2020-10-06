@@ -47,7 +47,11 @@ function SelectCategory({ changeAppLocation, selectCategory, list_name, shopping
             </div>
           )
         })}
-        <Button name={global.i18n.back} onClick={goBack} className="btn btn-secondary btn-lg shadow-sm" />
+        <Button 
+          name={global.i18n.back} 
+          onClick={goBack} 
+          className="btn btn-secondary btn-lg shadow-sm" 
+        />
       </div>
     </div>
   )

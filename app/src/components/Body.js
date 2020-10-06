@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Route, Switch } from 'react-router-dom'
 
 import Home from '../views/Home.js'
-import Lists from '../views/Lists.js'
+import ShoppingLists from '../views/ShoppingLists.js'
 import NewList from '../views/NewList.js'
 import Categories from '../views/Categories.js'
 import Products from '../views/Products.js'
@@ -35,7 +35,7 @@ function Body({ changeAppLocation }) {
             component={() => <Home changeAppLocation={changeAppLocation}/>}
           />
           <Route path="/Lists" 
-            component={() => <Lists changeAppLocation={changeAppLocation} setCurrentList={setList}/>}
+            component={() => <ShoppingLists changeAppLocation={changeAppLocation} setCurrentList={setList}/>}
           />
           <Route path="/ViewList" 
             component={() => <ViewList changeAppLocation={changeAppLocation} list_name={current_list} activateShoppingMode={activateShoppingMode}/>}

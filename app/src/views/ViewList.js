@@ -4,7 +4,7 @@ import { Link, useHistory } from 'react-router-dom'
 import Button from '../components/Button'
 import BackButton from '../components/BackButton'
 import OptionModal from '../components/OptionModal'
-import { retrieveListProducts, deleteProductFromList } from '../services/productsRequester'
+import { retrieveListProducts, removeProductFromList, removeCheckedProductsFromList } from '../services/productsRequester'
 
 function ViewList({ changeAppLocation, list_name, activateShoppingMode }) {
   const history = useHistory()
@@ -46,14 +46,14 @@ function ViewList({ changeAppLocation, list_name, activateShoppingMode }) {
 
   const deleteProduct = async () => {
     const data = {list_name: list_name, product: product_to_delete}
-    const response = await deleteProductFromList(data)
+    const response = await removeProductFromList(data)
 
     setProducts(response)
   }
 
   const finishShopping = () => {
     const data = {list_name: list_name, product: shopping_cart}
-    deleteProductFromList(data)
+    removeCheckedProductsFromList(data)
 
     changeAppLocation(global.i18n.home)
     history.push("/")

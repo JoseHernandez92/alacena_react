@@ -28,13 +28,17 @@ async function retrieveListProducts(list_name) {
     return products_retrieved
 }
 
-async function deleteProductFromList(productAndList){
-    const response = await HttpRequester.post('deleteProductFromList', productAndList)
+async function removeProductFromList(productAndList){
+    const response = await HttpRequester.post('removeProductFromList', productAndList)
 
     return response
 }
 
+async function removeCheckedProductsFromList(productAndList){
+    const response = await HttpRequester.post('removeCheckedProductsFromList', productAndList)
 
+    return response
+}
 
 export {
     retrieveCategoryProducts,
@@ -42,5 +46,6 @@ export {
     addProductToCategory,
     deleteProductFromCategory,
     retrieveListProducts,
-    deleteProductFromList
+    removeProductFromList,
+    removeCheckedProductsFromList
 }

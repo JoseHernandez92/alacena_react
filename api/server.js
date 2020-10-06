@@ -6,14 +6,14 @@ api.use(cors())
 api.use(express.json())
 
 let products = {
-  Carne: ["Lomo", "Pechuga", "Ternera"], 
-  Verduras: ["Pimientos", "Acelgas"], 
+  Carne: ["Lomo", "Pechuga", "Ternera"],
+  Verduras: ["Pimientos", "Acelgas"],
   Fruta: ["Plátanos", "Manzanas"],
   Bebidas: ["Agua", "Cerveza"]
 }
 
 let lists = {}
- 
+
 api.get('/', (req, res) => {
   res.send('Hello World')
 })
@@ -24,26 +24,26 @@ api.get('/retrieveCategories', (req, res) => {
   res.json(categories)
 })
 
-api.get('/retrieveProducts',  (req, res) => {
+api.get('/retrieveProducts', (req, res) => {
   const category = req.query.category
-  
+
   res.json(products[category])
 })
 
-api.get('/retrieveListProducts',  (req, res) => {
+api.get('/retrieveListProducts', (req, res) => {
   const list = req.query.list
-  
+
   res.json(lists[list])
 })
 
 api.post('/addNewList', (req, res) => {
   const new_list = req.body.listName
 
-  if(new_list in lists){
-    return res.json({errorMessage: "Ya tienes una lista con ese nombre"})
+  if (new_list in lists) {
+    return res.json({ errorMessage: "Ya tienes una lista con ese nombre" })
   }
   lists[new_list] = []
-  
+
   res.json([])
 })
 
@@ -62,17 +62,9 @@ api.get('/retrieveLists', (req, res) => {
   res.json(allList)
 })
 
-api.post('/deleteProductFromList', (req, res) => {
+api.post('/removeProductFromList', (req, res) => {
   const list_name = req.body.list_name
   const products = req.body.product
-
-  if (Array.isArray(products)){
-    for (item of products){
-      const item_index = lists[list_name].indexOf(item)
-      lists[list_name].splice(item_index, 1) 
-    }
-    return res.json(lists[list_name])
-  }
 
   const product_index = lists[list_name].indexOf(products)
 
@@ -81,9 +73,21 @@ api.post('/deleteProductFromList', (req, res) => {
   res.json(lists[list_name])
 })
 
+api.post('/removeCheckedProductsFromList', (req, res) => {
+  const list_name = req.body.list_name
+  const products = req.body.product
+
+  for (item of products) {
+    const item_index = lists[list_name].indexOf(item)
+    lists[list_name].splice(item_index, 1)
+  }
+  
+  res.json(lists[list_name])
+})
+
 api.post('/deleteList', (req, res) => {
   const list_name = req.body.list_name
-  
+
   delete lists[list_name]
   const allList = Object.keys(lists)
 
@@ -114,7 +118,7 @@ api.post('/addProduct', (req, res) => {
 
 api.post('/deleteCategory', (req, res) => {
   const category = req.body.category_name
-  
+
   delete products[category]
   const all_categories = Object.keys(products)
 

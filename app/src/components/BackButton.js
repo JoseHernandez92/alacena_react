@@ -5,7 +5,6 @@ function BackButton({ onClick, location }) {
   const history = useHistory()
   const goBack = () => {
     if(location){
-      console.log(location)
       return history.push(`${location}`)
     }
     history.goBack()

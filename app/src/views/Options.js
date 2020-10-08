@@ -23,7 +23,6 @@ function Options({ changeAppLocation }) {
         <BackButton onClick={() => changeAppLocation(global.i18n.home)}/>
       </div>
     </div>
-
   )
 }
 

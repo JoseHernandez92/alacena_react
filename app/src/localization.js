@@ -22,7 +22,8 @@ module.exports = localization = {
     add_product: "Add a product",
     delete_category: "Do you want to delete this category?",
     delete_product: "Do you want to delete this product?",
-    no_list: "There are no lists"
+    no_list: "There are no lists",
+    last_added: "you added"
   },
   
   es: {
@@ -48,6 +49,7 @@ module.exports = localization = {
     add_product: "Añade un producto",
     delete_category: "¿Quieres borrar esta categoría?",
     delete_product: "¿Quieres borrar este producto?",
-    no_list: "No hay ninguna lista"
+    no_list: "No hay ninguna lista",
+    last_added: "has añadido"
   }
 }

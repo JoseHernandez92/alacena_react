@@ -16,10 +16,6 @@ function NewLists({ changeAppLocation }) {
     setListName(event.target.value)
   }
 
-  const handleClick =  () => {
-    sendList() 
-  }
-
   const sendList = async () => {
     let list = {listName: list_name}
     const response = await saveShoppingList(list)
@@ -48,7 +44,7 @@ function NewLists({ changeAppLocation }) {
         </input>
         <Button 
           name={global.i18n.add_new_list} 
-          onClick={handleClick} 
+          onClick={sendList} 
           className="btn btn-light btn-lg shadow-sm w-50 m-2"
         />
       </div>

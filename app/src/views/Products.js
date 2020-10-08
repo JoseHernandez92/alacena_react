@@ -47,16 +47,33 @@ function Products({ changeAppLocation }) {
   return (
     <div className="d-flex flex-wrap justify-content-center m-3">
       <div className="d-flex flex-wrap justify-content-center w-75">
-        <InputModal show={show_input_modal} acceptOption={(input_content) => { addProduct(input_content), setShowInputModal(false) }} closeModal={() => setShowInputModal(false)} />
-        <OptionModal show={show_option_modal} message={global.i18n.delete_product} acceptOption={() => { deleteProduct(), setShowOptionModal(false) }} denyOption={() => setShowOptionModal(false)} />
+        <InputModal 
+          show={show_input_modal} 
+          acceptOption={(input_content) => { addProduct(input_content), setShowInputModal(false) }} 
+          closeModal={() => setShowInputModal(false)} 
+        />
+        <OptionModal 
+          show={show_option_modal} 
+          message={global.i18n.delete_product} 
+          acceptOption={() => { deleteProduct(), setShowOptionModal(false) }} 
+          denyOption={() => setShowOptionModal(false)} 
+        />
         {products.map((product, index) => {
           return (
             <div className="d-flex justify-content-center w-50" key={index}>
-              <HoldButton name={product} onHold={() => selectProduct(product)} className="btn btn-light btn-lg shadow w-75 m-3" />
+              <HoldButton 
+                name={product} 
+                onHold={() => selectProduct(product)} 
+                className="btn btn-light btn-lg shadow w-75 m-3" 
+              />
             </div>
           )
         })}
-        <Button name={global.i18n.add_product} onClick={() => setShowInputModal(true)} className="btn btn-primary btn-lg shadow w-75 m-3" />
+        <Button 
+          name={global.i18n.add_product} 
+          onClick={() => setShowInputModal(true)} 
+          className="btn btn-primary btn-lg shadow w-75 m-3" 
+        />
         <BackButton onClick={() => changeAppLocation(global.i18n.products)}/>
       </div>
     </div>

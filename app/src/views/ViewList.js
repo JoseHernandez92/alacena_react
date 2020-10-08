@@ -73,14 +73,18 @@ function ViewList({ changeAppLocation, activateShoppingMode }) {
           </div>
         )
       })}
-      <Link to="/SelectCategory" className="w-50">
+      <Link to={`/SelectCategory/${params.list}`} className="w-50">
         <Button 
           name={global.i18n.add_more} 
           onClick={() => {activateShoppingMode(true), changeAppLocation(global.i18n.products)}}
           className="btn btn-primary m-2"
         />
       </Link>
-      <Button name={global.i18n.done} onClick={finishShopping} className="btn btn-secondary btn-lg shadow w-50 m-2" />
+      <Button 
+        name={global.i18n.done} 
+        onClick={finishShopping} 
+        className="btn btn-secondary btn-lg shadow w-50 m-2" 
+      />
       <BackButton onClick={() => changeAppLocation(global.i18n.my_lists)}/>
     </div>
   )

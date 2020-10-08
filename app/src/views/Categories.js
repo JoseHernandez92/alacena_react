@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 import Button from '../components/Button'
-import InputModal from '../components/InputModal'
+import BackButton from '../components/BackButton'
 import HoldButton from '../components/HoldButton'
+import InputModal from '../components/InputModal'
 import OptionModal from '../components/OptionModal'
-import { retrieveCategories, addCategory, deleteCategory  } from '../services/categoriesRequester'
+import { retrieveCategories, addCategory, deleteCategory } from '../services/categoriesRequester'
 
 function Categories({ changeAppLocation }) {
   const history = useHistory()
@@ -66,13 +67,10 @@ function Categories({ changeAppLocation }) {
           )
         })}
         <Button name={global.i18n.add_category} onClick={() => setShowInputModal(true)} className="btn btn-primary btn-lg shadow w-75 m-3" />
-        <Link to="/" className="d-flex justify-content-center text-decoration-none w-50 m-3">
-          <Button
-            name={global.i18n.back}
-            onClick={() => changeAppLocation(global.i18n.home)}
-            className="btn btn-secondary btn-lg shadow"
-          />
-        </Link>
+        <BackButton 
+          onClick={() => changeAppLocation(global.i18n.products)} 
+          location={`/`}
+        />
       </div>
     </div>
   )

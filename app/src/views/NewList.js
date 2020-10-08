@@ -6,8 +6,8 @@ import BackButton from '../components/BackButton'
 import ErrorModal from '../components/ErrorModal'
 import { saveShoppingList } from '../services/shoppingListRequester'
 
-function NewLists({ changeAppLocation, setCurrentList }) {
-  let history = useHistory()
+function NewLists({ changeAppLocation }) {
+  const history = useHistory()
   const [list_name, setListName] = useState("")
   const [show_error, setShowError] = useState(false)
   const [message_error, setMessageError] = useState("")
@@ -30,8 +30,7 @@ function NewLists({ changeAppLocation, setCurrentList }) {
       return
     }
     changeAppLocation(global.i18n.products)
-    setCurrentList(list_name)
-    history.push("/SelectCategory")
+    history.push(`/SelectCategory/${list_name}`)
   }
 
   return (

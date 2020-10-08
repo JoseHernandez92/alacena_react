@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import { Link, useHistory, useParams } from 'react-router-dom'
 
 import Button from '../components/Button'
 import { retrieveCategories  } from '../services/categoriesRequester'
 
 
-function SelectCategory({ changeAppLocation, selectCategory, list_name, shoppingMode }) {
+function SelectCategory({ changeAppLocation, shoppingMode }) {
   const [product_category, setProductCategory] = useState([])
   const history = useHistory()
+  const params = useParams();
 
   useEffect(() => {
+    changeAppLocation(params.list)
     getCategories()
   }, [])
 
@@ -22,7 +24,7 @@ function SelectCategory({ changeAppLocation, selectCategory, list_name, shopping
   const goBack = () => {
     if (shoppingMode) {
       history.push("/ViewList")
-      changeAppLocation(list_name)
+      changeAppLocation(params.list)
       return
     }
 
@@ -33,14 +35,14 @@ function SelectCategory({ changeAppLocation, selectCategory, list_name, shopping
   return (
     <div className="d-flex flex-wrap justify-content-center m-3">
       <div className="d-flex flex-wrap justify-content-center w-75">
-        <div className="p-3 mb-2 bg-info text-center text-white rounded w-75">{list_name}</div>
+        <div className="p-3 mb-2 bg-info text-center text-white rounded w-75">{params.list}</div>
         {product_category.map((category, index) => {
           return (
             <div className="d-flex justify-content-center w-50" key={index}>
-              <Link to="/AddProduct" className="d-flex justify-content-center text-decoration-none w-75 m-3">
+              <Link to={`/AddProduct/${category}/${params.list}`} className="d-flex justify-content-center text-decoration-none w-75 m-3">
                 <Button 
                   name={category} 
-                  onClick={() => { changeAppLocation(category), selectCategory(category) }} 
+                  onClick={() =>  changeAppLocation(category)} 
                   className="btn btn-light btn-lg shadow w-100 " 
                 />
               </Link>

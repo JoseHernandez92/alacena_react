@@ -1,24 +1,26 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import { Link, useHistory, useParams } from 'react-router-dom'
 
 import Button from '../components/Button'
 import BackButton from '../components/BackButton'
 import OptionModal from '../components/OptionModal'
 import { retrieveListProducts, removeProductFromList, removeCheckedProductsFromList } from '../services/productsRequester'
 
-function ViewList({ changeAppLocation, list_name, activateShoppingMode }) {
+function ViewList({ changeAppLocation, activateShoppingMode }) {
   const history = useHistory()
+  const params = useParams()
   const [products, setProducts] = useState([])
   const [show_modal, setShowModal] = useState(false)
   const [shopping_cart, setShoppingCart] = useState([])
   const [product_to_delete, setProductToDelete] = useState('')
 
   useEffect(() => {
+    changeAppLocation(params.list)
     getProducts()
   }, [])
 
   const getProducts = async () => {
-    const response = await retrieveListProducts(list_name)
+    const response = await retrieveListProducts(params.list)
 
     setProducts(response)
   }
@@ -45,14 +47,14 @@ function ViewList({ changeAppLocation, list_name, activateShoppingMode }) {
   }
 
   const deleteProduct = async () => {
-    const data = {list_name: list_name, product: product_to_delete}
+    const data = {list_name: params.list, product: product_to_delete}
     const response = await removeProductFromList(data)
 
     setProducts(response)
   }
 
   const finishShopping = () => {
-    const data = {list_name: list_name, product: shopping_cart}
+    const data = {list_name: params.list, product: shopping_cart}
     removeCheckedProductsFromList(data)
 
     changeAppLocation(global.i18n.home)

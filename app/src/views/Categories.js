@@ -7,7 +7,7 @@ import HoldButton from '../components/HoldButton'
 import OptionModal from '../components/OptionModal'
 import { retrieveCategories, addCategory, deleteCategory  } from '../services/categoriesRequester'
 
-function Categories({ changeAppLocation, selectCategory }) {
+function Categories({ changeAppLocation }) {
   const history = useHistory()
   const [product_category, setProductCategory] = useState([])
   const [show_input_modal, setShowInputModal] = useState(false)
@@ -15,6 +15,7 @@ function Categories({ changeAppLocation, selectCategory }) {
   const [category_to_delete, setCategoryToDelete] = useState('')
 
   useEffect(() => {
+    changeAppLocation(global.i18n.products)
     getCategories()
   }, [])
 
@@ -30,10 +31,9 @@ function Categories({ changeAppLocation, selectCategory }) {
   }
 
   const handleClick = (category) => {
-    selectCategory(category)
     changeAppLocation(category)
 
-    history.push("/Products")
+    history.push(`/Products/${category}`)
   }
 
   const selectCategoryToDelete = (category) => {

@@ -1,19 +1,22 @@
 import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 
 import Button from '../components/Button'
 import BackButton from '../components/BackButton'
 import { retrieveCategoryProducts, addProductToShoppingList } from '../services/productsRequester'
 
-function AddProduct({ changeAppLocation, list_name, currentCategory }) {
+function AddProduct({ changeAppLocation }) {
   const [products, setProducts] = useState([])
   const [last_product_added, setLastProductAdded] = useState("")
+  const params = useParams()
 
   useEffect(() => {
+    changeAppLocation(params.category)
     getProducts()
   }, [])
 
   const getProducts = async () => {
-    const response = await retrieveCategoryProducts(currentCategory)
+    const response = await retrieveCategoryProducts(params.category)
 
     setProducts(response)
   }
@@ -21,14 +24,14 @@ function AddProduct({ changeAppLocation, list_name, currentCategory }) {
   const addProduct = (event) => {
     const product = event.target.innerHTML
     setLastProductAdded(`: has añadido ${product}`)
-    const data = { list: list_name, product: product }
+    const data = { list: params.list, product: product }
     addProductToShoppingList(data)
   }
 
   return (
     <div className="d-flex flex-wrap justify-content-center m-3">
       <div className="d-flex flex-wrap justify-content-center w-75" >
-        <div className="p-3 mb-2 bg-info text-center text-white rounded w-75">{list_name}{last_product_added}</div>
+        <div className="p-3 mb-2 bg-info text-center text-white rounded w-75">{params.list}{last_product_added}</div>
         {products.map((product, index) => {
           return (
             <div className="d-flex justify-content-center w-50" key={index}>
@@ -36,7 +39,7 @@ function AddProduct({ changeAppLocation, list_name, currentCategory }) {
             </div>
           )
         })}
-        <BackButton onClick={() => changeAppLocation(global.i18n.products)}/>
+        <BackButton onClick={() => changeAppLocation(global.i18n.products)} location={`/SelectCategory/${params.list}`}/>
       </div>
     </div>
 

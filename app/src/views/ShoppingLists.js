@@ -6,7 +6,7 @@ import HoldButton from '../components/HoldButton'
 import { retrieveShoppingLists, deleteShoppingList } from '../services/shoppingListRequester'
 import OptionModal from '../components/OptionModal'
 
-function ShoppingLists({ changeAppLocation, setCurrentList }) {
+function ShoppingLists({ changeAppLocation }) {
   const history = useHistory()
   const [shoppingLists, setShoppingLists] = useState([])
   const [selectedShoppingList, setSelectedShoppingList] = useState('')
@@ -24,8 +24,7 @@ function ShoppingLists({ changeAppLocation, setCurrentList }) {
 
   const handleClick = (list) => {
     changeAppLocation(list)
-    setCurrentList(list)
-    history.push("/ViewList")
+    history.push(`/ViewList/${list}`)
   }
 
   const selectShoppingList = (list) => {

@@ -95,7 +95,6 @@ api.post('/deleteList', (req, res) => {
 })
 
 api.post('/addCategory', (req, res) => {
-  console.log(req)
   const category = req.body.new_category
 
   products[category] = []

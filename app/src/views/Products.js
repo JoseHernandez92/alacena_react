@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 
 import Button from '../components/Button'
 import HoldButton from '../components/HoldButton'
@@ -7,24 +8,26 @@ import InputModal from '../components/InputModal'
 import OptionModal from '../components/OptionModal'
 import { retrieveCategoryProducts, addProductToCategory, deleteProductFromCategory} from '../services/productsRequester'
 
-function Products({ changeAppLocation, currentCategory }) {
+function Products({ changeAppLocation }) {
   const [products, setProducts] = useState([])
   const [show_input_modal, setShowInputModal] = useState(false)
   const [show_option_modal, setShowOptionModal] = useState(false)
   const [selected_product, setSelectedProduct] = useState('')
+  const params = useParams();
 
   useEffect(() => {
+    changeAppLocation(params.category)
     getProducts()
   }, [])
 
   const getProducts = async () => {
-    const response = await retrieveCategoryProducts(currentCategory)
+    const response = await retrieveCategoryProducts(params.category)
 
     setProducts(response)
   }
 
   const addProduct = async (input_content) => {
-    const data = { category: currentCategory, new_product: input_content }
+    const data = { category: params.category, new_product: input_content }
     await addProductToCategory(data)
     getProducts()
   }
@@ -35,7 +38,7 @@ function Products({ changeAppLocation, currentCategory }) {
   }
 
   const deleteProduct = async () => {
-    const data = { category: currentCategory, product: selected_product }
+    const data = { category: params.category, product: selected_product }
     const response = await deleteProductFromCategory(data)
 
     setProducts(response)
